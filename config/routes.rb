@@ -1,12 +1,35 @@
 FastLearningApp::Application.routes.draw do
 
-  get "static_pages/home"
-
-  root                            to: 'static_pages#home'
+  root                            to: 'application_pages#show', :id => 1
   
-  devise_for :users
-  #resources :users
+  # Static pages
+  match '/home',                  to: 'application_pages#show', :id => 1
+  match '/about',                 to: 'application_pages#show', :id => 2
+  # match '/calendar',              to: 'application_pages#show', :id => 3
+  match '/terms',                 to: 'application_pages#show', :id => 3
+  # match '/contact',               to: 'application_pages#show', :id => 5
 
+  # Users 
+  devise_for :users
+  devise_scope :user do
+    match "/signin",  :to => "devise/sessions#new"
+  end
+  
+  resources :users
+  match '/profile', to: 'users#show'
+  
+  # Roles
+  resources :roles
+
+  # Pages
+  resources :pages
+  
+  # Organisations
+  resources :organizations
+  
+  # Application pages
+  resources :application_pages
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
