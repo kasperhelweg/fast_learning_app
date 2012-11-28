@@ -8,11 +8,18 @@ admin.role = "SuperUser"
 admin.save
 
 
-# Orh Admin
+# Org Admin
 manager = User.new(name: "Henrik Helweg", email: "henrik@gmail.dk", password: "123456", password_confirmation: "123456")
 manager.organization = Organization.first
 manager.build_profile
 manager.role = "Admin"
 manager.save
+
+# Org employee
+employee = User.new(name: "Stinne Tarp", email: "stinne@gmail.dk", password: "123456", password_confirmation: "123456")
+employee.organization = Organization.first
+employee.build_profile
+employee.role = "User"
+employee.save
 
 

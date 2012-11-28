@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128120759) do
+ActiveRecord::Schema.define(:version => 20121128155847) do
 
   create_table "application_pages", :force => true do |t|
     t.string   "location",   :null => false
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(:version => 20121128120759) do
   end
 
   add_index "application_pages", ["location"], :name => "index_application_pages_on_location"
+
+  create_table "classrooms", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "courses", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "learning_plans", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "learning_spaces", :force => true do |t|
     t.string   "id_hash",         :null => false
@@ -41,6 +56,11 @@ ActiveRecord::Schema.define(:version => 20121128120759) do
 
   add_index "memberships", ["user_id", "learning_space_id"], :name => "index_memberships_on_user_id_and_learning_space_id", :unique => true
 
+  create_table "orders", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "organizations", :force => true do |t|
     t.string   "id_hash",    :null => false
     t.string   "name",       :null => false
@@ -60,6 +80,11 @@ ActiveRecord::Schema.define(:version => 20121128120759) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "products", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "profiles", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
@@ -67,6 +92,11 @@ ActiveRecord::Schema.define(:version => 20121128120759) do
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id", :unique => true
+
+  create_table "resources", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name",       :null => false
