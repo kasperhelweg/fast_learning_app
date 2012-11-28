@@ -22,11 +22,13 @@ ActiveRecord::Schema.define(:version => 20121127234658) do
   add_index "application_pages", ["location"], :name => "index_application_pages_on_location"
 
   create_table "organizations", :force => true do |t|
+    t.string   "id_hash",    :null => false
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "organizations", ["id_hash"], :name => "index_organizations_on_id_hash", :unique => true
   add_index "organizations", ["name"], :name => "index_organizations_on_name", :unique => true
 
   create_table "pages", :force => true do |t|

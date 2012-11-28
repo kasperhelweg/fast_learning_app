@@ -25,10 +25,13 @@ FastLearningApp::Application.routes.draw do
   resources :pages
   
   # Organisations
-  resources :organizations
+  resources :organizations, :path => ''
   
   # Application pages
   resources :application_pages
+
+  
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
