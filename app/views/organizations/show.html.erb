@@ -1,4 +1,19 @@
 Velkommen til <%= current_user.organization.name %><br>
-<% current_user.organization.learning_spaces.each do |learning_space| %>
- <%= learning_space.name %><br>
-<% end %>
+<div class="row">
+  <div class="span10">  
+    <% current_user.organization.learning_spaces.each do |learning_space| %>
+    <%= link_to learning_space.name, learning_space_path( current_user.organization, learning_space ) %><br>
+    <% end %>
+  </div>
+
+  <div class="span2">    
+    <%= link_to new_organization_person_path( current_user.organization )  do %>    
+    <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign"></i>Add people</button> 
+    <% end %>
+
+     <%= link_to new_learning_space_path( current_user.organization )  do %>    
+    <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign"></i>Create learningspace</button> 
+    <% end %>
+
+  </div>
+</div>

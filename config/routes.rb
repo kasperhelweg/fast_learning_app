@@ -1,7 +1,5 @@
 FastLearningApp::Application.routes.draw do
 
-  
-
   root                            to: 'application_pages#show', :id => 1
   
   # Static pages
@@ -27,15 +25,35 @@ FastLearningApp::Application.routes.draw do
   resources :pages
   
   # Organisations
-  resources :organizations, :path => ''
+  resources :organizations, :path => '' do
+    resources :users, :as => 'people',
+    :only => [:new, :create],
+    :path => 'people',
+    :controller => 'organization/people'
+   
+  end
   
-  # Learning spaces
-  resources :learning_spaces
+  resources :learning_spaces, :only => [:index, :new, :create], :path => '/:organization_id/learningspaces/'
+  resources :learning_spaces, :only => [:edit, :show, :update, :destroy], :path => '/:organization_id/' do
+    resources :users, :as => 'people',
+    :only => [:new, :create],
+    :path => 'people',
+    :controller => 'learning_spaces/people'
+  end
 
   # Application pages
   resources :application_pages
 
-  
+  #  resources :companies, :path => '', :only => [] do 
+ # resources :companies, :path => '', :only => [], :shallow => true do 
+   # resources :learners, :as => 'people', 
+   #                      :only => [:new, :edit, :create, :update], 
+   #                      :path => 'people', 
+   #                      :path_names => { :edit => 'account',  :new => 'new' }, 
+   #                      :controller=>'company/people' 
+
+  #end
+
 
   
   # The priority is based upon order of creation:

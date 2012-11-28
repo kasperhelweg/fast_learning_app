@@ -21,6 +21,7 @@
 	        <li><%= link_to "Indstillinger", edit_user_path( current_user )  %></li>
 	
 		<li class="divider"></li>
+		<li><%= link_to "Organization", organization_path( current_user.organization )  %></li>
 		<li><%= link_to "Konto", "#"  %></li>
 		<li>
 		  <%= link_to "Log af",  destroy_user_session_path, :method => :delete %>
