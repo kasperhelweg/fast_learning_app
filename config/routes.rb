@@ -1,5 +1,5 @@
 FastLearningApp::Application.routes.draw do
-
+ 
   root                            to: 'application_pages#show', :id => 1
   
   # Static pages
@@ -8,6 +8,12 @@ FastLearningApp::Application.routes.draw do
   # match '/calendar',              to: 'application_pages#show', :id => 3
   match '/terms',                 to: 'application_pages#show', :id => 3
   # match '/contact',               to: 'application_pages#show', :id => 5
+
+  # Pages
+  resources :pages
+ 
+  # Application pages
+  resources :application_pages
 
   # Users 
   devise_for :users
@@ -21,9 +27,6 @@ FastLearningApp::Application.routes.draw do
   # Roles
   resources :roles
 
-  # Pages
-  resources :pages
-  
   # Organisations
   resources :organizations, :path => '' do
     resources :users, :as => 'people',
@@ -41,8 +44,24 @@ FastLearningApp::Application.routes.draw do
     :controller => 'learning_spaces/people'
   end
 
-  # Application pages
-  resources :application_pages
+  
+  # Courses
+  resources :courses
+
+  # Classrooms
+  resources :classrooms
+  
+  # Assets
+  resources :resources
+  
+  # Orders
+  resources :orders
+
+  # Products
+  resources :products
+
+  # LearningPlans
+  resources :learning_plans
 
   #  resources :companies, :path => '', :only => [] do 
  # resources :companies, :path => '', :only => [], :shallow => true do 
