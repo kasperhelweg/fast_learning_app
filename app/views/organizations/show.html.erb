@@ -1,1 +1,4 @@
-Velkommen til <%= current_user.organization.name %>
+Velkommen til <%= current_user.organization.name %><br>
+<% current_user.organization.learning_spaces.each do |learning_space| %>
+ <%= learning_space.name %><br>
+<% end %>

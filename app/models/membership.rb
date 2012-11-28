@@ -1,32 +1,24 @@
-class Organization < ActiveRecord::Base
- 
-  # Associations
-  has_many :users
-  has_many :learning_spaces
+class Membership < ActiveRecord::Base
   
+  # Associations
+  belongs_to :user
+  belongs_to :learning_space
+    
   # Accesible
-  attr_accessible :name
+  attr_accessible #none
   
   # Callbacks
-  before_create   :create_id_hash
-
+  
   # Validations
+  validates_uniqueness_of :user_id, :scope => :learning_space_id
 
   ##############################################################
   # Public interface
   ##############################################################
-  
-  def to_param
-    id_hash
-  end
-  
+    
   ##############################################################
   # Private interface
   ##############################################################
   private
 
-  def create_id_hash
-    self.id_hash = Digest::SHA2.hexdigest( self.name )[0..6]
-  end
-  
 end

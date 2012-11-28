@@ -1,9 +1,12 @@
-class Organization < ActiveRecord::Base
- 
-  # Associations
-  has_many :users
-  has_many :learning_spaces
+class LearningSpace < ActiveRecord::Base
   
+  # Associations
+  belongs_to :organization
+  
+  has_many :memberships
+  has_many :users, :through => :memberships
+
+    
   # Accesible
   attr_accessible :name
   
@@ -24,9 +27,10 @@ class Organization < ActiveRecord::Base
   # Private interface
   ##############################################################
   private
-
+  
   def create_id_hash
-    self.id_hash = Digest::SHA2.hexdigest( self.name )[0..6]
+    self.id_hash = Digest::SHA2.hexdigest( self.organization.id_hash + "." + self.name )[0..6]
   end
   
+
 end

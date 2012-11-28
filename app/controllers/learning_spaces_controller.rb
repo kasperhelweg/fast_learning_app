@@ -1,0 +1,2 @@
+class LearningSpacesController < ApplicationController
+end

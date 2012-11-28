@@ -1,5 +1,7 @@
 FastLearningApp::Application.routes.draw do
 
+  
+
   root                            to: 'application_pages#show', :id => 1
   
   # Static pages
@@ -27,6 +29,9 @@ FastLearningApp::Application.routes.draw do
   # Organisations
   resources :organizations, :path => ''
   
+  # Learning spaces
+  resources :learning_spaces
+
   # Application pages
   resources :application_pages
 

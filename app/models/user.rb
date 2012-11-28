@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   # Associations
   belongs_to :organization
   has_one    :profile
+
+  has_many :memberships
+  has_many :learning_spaces, :through => :memberships
   
   # Accesible
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
@@ -22,6 +25,10 @@ class User < ActiveRecord::Base
   # Public interface
   ##############################################################
 
+  def to_param
+    id_hash
+  end
+  
   def role?( role )
     return role.to_s.camelize == self.role
   end

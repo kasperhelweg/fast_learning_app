@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127234658) do
+ActiveRecord::Schema.define(:version => 20121128120759) do
 
   create_table "application_pages", :force => true do |t|
     t.string   "location",   :null => false
@@ -20,6 +20,26 @@ ActiveRecord::Schema.define(:version => 20121127234658) do
   end
 
   add_index "application_pages", ["location"], :name => "index_application_pages_on_location"
+
+  create_table "learning_spaces", :force => true do |t|
+    t.string   "id_hash",         :null => false
+    t.string   "name",            :null => false
+    t.integer  "organization_id", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "learning_spaces", ["id_hash"], :name => "index_learning_spaces_on_id_hash", :unique => true
+  add_index "learning_spaces", ["organization_id"], :name => "index_learning_spaces_on_organization_id"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id",           :null => false
+    t.integer  "learning_space_id", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "memberships", ["user_id", "learning_space_id"], :name => "index_memberships_on_user_id_and_learning_space_id", :unique => true
 
   create_table "organizations", :force => true do |t|
     t.string   "id_hash",    :null => false
