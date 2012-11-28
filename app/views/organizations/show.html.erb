@@ -8,11 +8,11 @@ Velkommen til <%= current_user.organization.name %><br>
 
   <div class="span2">    
     <%= link_to new_organization_person_path( current_user.organization )  do %>    
-    <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign"></i>Add people</button> 
+    <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Add people</button> 
     <% end %>
 
      <%= link_to new_learning_space_path( current_user.organization )  do %>    
-    <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign"></i>Create learningspace</button> 
+    <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Create learningspace</button> 
     <% end %>
 
   </div>
