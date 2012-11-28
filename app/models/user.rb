@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   # Associations
   belongs_to :organization
+  has_one    :profile
   
   # Accesible
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me

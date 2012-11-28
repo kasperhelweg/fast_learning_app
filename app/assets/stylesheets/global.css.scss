@@ -1,0 +1,99 @@
+$navbarHeight: 50px;
+
+@import "bootstrap";
+
+/* ======= Global ======= */
+html {
+  overflow-y: scroll;
+}
+
+body { font-family: adelle-1, adelle-2, Helvetica, Arial, sans-serif; background: #F9F9F9; padding-top: 100px; }
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+
+/* ======= NavBar ======= */
+.navbar {
+  overflow: visible;
+  margin-bottom: 20px;
+  color: #555555;
+  *position: relative;
+  *z-index: 2;
+}
+
+.navbar .brand {
+  float: left;
+  display: block;
+  padding: 10px 20px 10px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #555555;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+
+
+
+/* ======= Structure: Header ======= */
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 0px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* ======= Structure: Footer ======= */
+footer {
+    margin-top: 90px;
+    padding-top: 5px;
+    border-top: 1px dashed #BCBCBC;
+    color: $grayLight;
+    a {
+	color: $gray;
+	&:hover { 
+	    color: $grayDarker;
+	}
+    }  
+    small { 
+	float: left; 
+    }
+    ul {
+	float: right;
+	list-style: none;
+	li {
+	    float: left;
+	    margin-left: 10px;
+	}
+    }
+}
+
+/* ======= Misc ======= */
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+}

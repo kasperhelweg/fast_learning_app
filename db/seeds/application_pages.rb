@@ -2,7 +2,7 @@
 
 # Homepage
 home_page = Page.create(title: "Homepage", content: 
-                        '<a href="/users/sign_out" data-method="delete" rel="nofollow">Sign out</a>'
+                        'Velkommen på forsiden'
                         )
 homepage = ApplicationPage.new(location: "root")
 homepage.page = home_page
