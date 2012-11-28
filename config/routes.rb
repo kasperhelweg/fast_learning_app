@@ -43,7 +43,6 @@ FastLearningApp::Application.routes.draw do
     :path => 'people',
     :controller => 'learning_spaces/people'
   end
-
   
   # Courses
   resources :courses
