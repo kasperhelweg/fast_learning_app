@@ -1,17 +1,17 @@
-Velkommen til <%= current_user.organization.name %><br>
+Velkommen til <%= @Organization.name %><br>
 <div class="row">
   <div class="span10">  
-    <% current_user.organization.learning_spaces.each do |learning_space| %>
-    <%= link_to learning_space.name, learning_space_path( current_user.organization, learning_space ) %><br>
+    <% @LearningSpaces.each do |learning_space| %>
+    <%= link_to learning_space.name, learning_space_path( @Organization, learning_space ) %><br>
     <% end %>
   </div>
 
   <div class="span2">    
-    <%= link_to new_organization_person_path( current_user.organization )  do %>    
+    <%= link_to new_organization_person_path( @Organization )  do %>    
     <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Add people</button> 
     <% end %>
 
-     <%= link_to new_learning_space_path( current_user.organization )  do %>    
+     <%= link_to new_learning_space_path( @Organization )  do %>    
     <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Create learningspace</button> 
     <% end %>
 
