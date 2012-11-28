@@ -16,10 +16,12 @@ FastLearningApp::Application.routes.draw do
   resources :application_pages
 
   # Users 
-  devise_for :users
   devise_scope :user do
     match "/signin",  :to => "devise/sessions#new"
+    match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
+  devise_for :users, :controllers => { :confirmations => "confirmations" }
+  
   
   resources :users
   match '/profile', to: 'users#show'

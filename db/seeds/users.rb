@@ -5,6 +5,7 @@ admin = User.new(name: "Kasper Helweg Jonassen", email: "kasper@gmail.dk", passw
 admin.organization = Organization.first
 admin.build_profile
 admin.role = "SuperUser"
+admin.confirmed_at = Time.now
 admin.save
 
 
@@ -13,6 +14,7 @@ manager = User.new(name: "Henrik Helweg", email: "henrik@gmail.dk", password: "1
 manager.organization = Organization.first
 manager.build_profile
 manager.role = "Admin"
+manager.confirmed_at = Time.now
 manager.save
 
 # Org employee
@@ -20,6 +22,7 @@ employee = User.new(name: "Stinne Tarp", email: "stinne@gmail.dk", password: "12
 employee.organization = Organization.first
 employee.build_profile
 employee.role = "User"
+employee.confirmed_at = Time.now
 employee.save
 
 
