@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     if current_user.role? :admin
       organization = current_user.organization
       learning_space = organization.learning_spaces.first
-      organization_learning_space_path(
+      learning_space_path(
                                        organization, 
                                        learning_space 
                                        )

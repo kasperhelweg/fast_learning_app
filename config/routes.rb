@@ -29,7 +29,7 @@ FastLearningApp::Application.routes.draw do
     resources :users, :as => 'people',
     :only => [:new, :create],
     :path => 'people',
-    :controller => 'organization/people'
+    :controller => 'organizations/people'
    
   end
   

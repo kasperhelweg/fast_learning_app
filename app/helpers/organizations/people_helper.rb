@@ -1,0 +1,2 @@
+module Organizations::PeopleHelper
+end
