@@ -23,7 +23,22 @@ class LearningSpace < ActiveRecord::Base
   def to_param
     id_hash
   end
-  
+
+  def invite_users
+    self.users.each do |user|
+      if user.new_record?
+        #invite user
+      end
+      self.save
+    end
+  end
+
+  def build_users( n )
+    n.times do
+      self.users.build
+    end
+  end
+
   ##############################################################
   # Private interface
   ##############################################################

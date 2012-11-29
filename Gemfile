@@ -12,6 +12,7 @@ gem 'state_machine', '1.1.2'
 gem 'wicked'
 gem 'brakeman'
 gem 'devise', '2.1.2'
+gem 'devise_invitable', '1.0.3'
 #gem 'orm_adapter', '0.4.0'
 #gem 'warden', '1.2.1'
 
