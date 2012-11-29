@@ -6,8 +6,7 @@ class LearningSpace < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
   accepts_nested_attributes_for :users
-
-    
+  
   # Accesible
   attr_accessible :name, :users_attributes
     
@@ -51,5 +50,4 @@ class LearningSpace < ActiveRecord::Base
     self.id_hash = Digest::SHA2.hexdigest( self.organization.id_hash + "." + self.name )[0..6]
   end
   
-
 end
