@@ -1,5 +1,7 @@
 FastLearningApp::Application.routes.draw do
  
+  resources :enrollments
+
   root                            to: 'application_pages#show', :id => 1
   
   # Static pages

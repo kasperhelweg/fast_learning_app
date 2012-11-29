@@ -28,7 +28,7 @@ class LearningSpace < ActiveRecord::Base
       self.users.each do |user|
         if user.new_record?
           user.skip_confirmation!       
-          user.state = 'staged'        
+          user.state = 'staged'
         end
       end   
       self.save!
@@ -37,7 +37,7 @@ class LearningSpace < ActiveRecord::Base
   
   def build_users( n )
     n.times do
-      self.users.build
+      user = self.users.build
     end
   end
 

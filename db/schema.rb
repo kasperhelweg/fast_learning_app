@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129093046) do
+ActiveRecord::Schema.define(:version => 20121129185004) do
 
   create_table "application_pages", :force => true do |t|
     t.string   "location",   :null => false
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(:version => 20121129093046) do
 
   add_index "courses", ["id_hash"], :name => "index_courses_on_id_hash", :unique => true
 
+  create_table "enrollments", :force => true do |t|
+    t.string   "id_hash",      :null => false
+    t.integer  "classroom_id"
+    t.integer  "user_id",      :null => false
+    t.integer  "course_id",    :null => false
+    t.string   "status",       :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "enrollments", ["id_hash"], :name => "index_enrollments_on_id_hash", :unique => true
+  add_index "enrollments", ["user_id", "course_id", "classroom_id"], :name => "index_enrollments_on_user_id_and_course_id_and_classroom_id", :unique => true
+
   create_table "learning_plans", :force => true do |t|
     t.string   "id_hash",    :null => false
     t.string   "title",      :null => false
@@ -83,10 +96,11 @@ ActiveRecord::Schema.define(:version => 20121129093046) do
   end
 
   create_table "memberships", :force => true do |t|
-    t.integer  "user_id",           :null => false
-    t.integer  "learning_space_id", :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "user_id",                              :null => false
+    t.integer  "learning_space_id",                    :null => false
+    t.boolean  "admin",             :default => false, :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   add_index "memberships", ["user_id", "learning_space_id"], :name => "index_memberships_on_user_id_and_learning_space_id", :unique => true
@@ -106,10 +120,14 @@ ActiveRecord::Schema.define(:version => 20121129093046) do
   add_index "orders", ["id_hash"], :name => "index_orders_on_id_hash", :unique => true
 
   create_table "organizations", :force => true do |t|
-    t.string   "id_hash",    :null => false
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "id_hash",           :null => false
+    t.string   "name",              :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "organizations", ["id_hash"], :name => "index_organizations_on_id_hash", :unique => true
@@ -182,6 +200,10 @@ ActiveRecord::Schema.define(:version => 20121129093046) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "invitation_token",       :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
@@ -190,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20121129093046) do
     t.string   "invited_by_type"
   end
 
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["id_hash"], :name => "index_users_on_id_hash", :unique => true
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"

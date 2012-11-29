@@ -6,21 +6,37 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Associations
-  belongs_to :organization
-  has_one    :profile
+  belongs_to                    :organization
 
-  has_many :memberships
-  has_many :learning_spaces, :through => :memberships
-  
+  has_one                       :profile
+  accepts_nested_attributes_for :profile
+
+  has_many                      :memberships
+  has_many                      :learning_spaces, :through => :memberships
+
+  has_many                      :enrollments
+  has_many                      :classrooms,      :through => :enrollments
+
+  # Paperclip
+  has_attached_file :avatar, 
+                    :styles => { :medium => "140x140>", :thumb => "35x35>" },
+                    :default_url => '/assets/avatars/default_:style.png',
+                    :path => "/avatars/:style/:id/:filename",
+                    :s3_permissions => :public_read
+
   # Accesible
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation
+  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes, :avatar
+  attr_accessor                 :name_required
   
   # Callbacks
+  after_initialize :set_name_required
+
   before_create   :create_id_hash
+  before_create   :create_profile
   before_save     :fix_name
 
   # Validations
-  validates       :name, presence: true, length: { maximum: 50 }   
+  validates       :name, presence: true, length: { maximum: 50 }, :if => lambda{ self.name_required? }
 
   ##############################################################
   # Public interface
@@ -41,7 +57,7 @@ class User < ActiveRecord::Base
     p[:password_confirmation] = params[:password_confirmation]
     update_attributes(p)
   end
-  
+
   def password_required?
     # Password is required if it is being set, but not for new records
     if !persisted? 
@@ -61,10 +77,22 @@ class User < ActiveRecord::Base
     self.encrypted_password.blank?
   end
 
+  def name_required?
+    self.name_required
+  end
+
   ##############################################################
   # Private interface
   ##############################################################
   private
+
+  def set_name_required
+    self.name_required = false
+  end
+
+  def create_profile
+    self.build_profile
+  end
 
   def create_id_hash
     self.id_hash = Digest::SHA2.hexdigest( self.email )[0..6]

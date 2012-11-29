@@ -7,7 +7,7 @@ html {
   overflow-y: scroll;
 }
 
-body { font-family: adelle-1, adelle-2, Helvetica, Arial, sans-serif; background: #F9F9F9; padding-top: 100px; }
+body { font-family: adelle-1, adelle-2, Helvetica, Arial, sans-serif; background: #F9F9F9; padding-top: 50px; }
 
 section {
   overflow: auto;
@@ -24,7 +24,14 @@ textarea {
   }
 }
 
+.for-flash {height:100px}
 
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1600px; /* or 950px */
+  min-width: 1100px; /* or 950px */
+}
 
 /* ======= NavBar ======= */
 .navbar {

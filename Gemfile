@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 2.2.1.1'
 gem 'bcrypt-ruby'
 gem 'cancan'
 gem 'friendly_id'
@@ -13,6 +13,7 @@ gem 'wicked'
 gem 'brakeman'
 gem 'devise', '2.1.2'
 gem 'devise_invitable', '1.0.3'
+gem 'devise-encryptable'
 #gem 'orm_adapter', '0.4.0'
 #gem 'warden', '1.2.1'
 

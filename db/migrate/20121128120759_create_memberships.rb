@@ -5,6 +5,8 @@ class CreateMemberships < ActiveRecord::Migration
       t.integer :user_id,           :null => false
       t.integer :learning_space_id, :null => false
 
+      t.boolean :admin,             :null => false, :default => false
+
       t.timestamps
     end
     add_index :memberships, [:user_id, :learning_space_id], :unique => true

@@ -1,18 +1,12 @@
-Welcome to the default learning space!!!
-
-<div class="row">
-  <div class="span10">  
-    hell
-  </div>
-
-  <div class="span2">    
+Hello
+<% content_for :sidebar do %>
+  
     <%= link_to new_learning_space_person_path( @Organization, @LearningSpace )  do %>    
     <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Add people</button> 
     <% end %>
-
+    
     <%= link_to "#" do %>    
-    <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Create learninplan</button> 
-    <% end %>
-
-  </div>
-</div>
+      <button class="btn btn-success btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Create learninplan</button> 
+      <% end %>
+<% end %>
+  

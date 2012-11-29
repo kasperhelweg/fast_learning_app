@@ -5,7 +5,6 @@
 	<%= image_tag("sendgrid-logo.png", :size => "112x30", alt: "Fastlearning") %>     
       </a>
       <nav>
-
         <ul class="nav pull-right">	
           <li><%= link_to "Forside",  root_path %></li>
           <li><%= link_to "Kalender", "#" %></li>
@@ -17,12 +16,14 @@
 		<%= current_user.name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-		<li><%= link_to "Profil", user_path( current_user )  %></li>
-	        <li><%= link_to "Indstillinger", edit_user_path( current_user )  %></li>
-	
+		<% if current_user.role? :admin %>
+		  <li><%= link_to "Konto", user_path( current_user )  %></li>
+		  <li><%= link_to "Indstillinger", edit_user_path( current_user )  %></li>
+		<% elsif current_user.role? :user %>
+ 		  <li><%= link_to "Profil", user_path( current_user )  %></li>
+		  <li><%= link_to "Indstillinger", edit_user_path( current_user )  %></li>
+		<% end %>
 		<li class="divider"></li>
-		<li><%= link_to "Organization", organization_path( current_user.organization )  %></li>
-		<li><%= link_to "Konto", "#"  %></li>
 		<li>
 		  <%= link_to "Log af",  destroy_user_session_path, :method => :delete %>
 		</li>

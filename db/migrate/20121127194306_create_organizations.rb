@@ -9,5 +9,6 @@ class CreateOrganizations < ActiveRecord::Migration
     end
     add_index :organizations, :id_hash,  :unique => true
     add_index :organizations, :name,     :unique => true
+    add_attachment :organizations, :logo
   end
 end
