@@ -24,15 +24,18 @@ class LearningSpace < ActiveRecord::Base
     id_hash
   end
 
-  def invite_users
-    self.users.each do |user|
-      if user.new_record?
-        #invite user
-      end
-      self.save
+  def stage_users
+    self.transaction do
+      self.users.each do |user|
+        if user.new_record?
+          user.skip_confirmation!       
+          user.state = 'staged'        
+        end
+      end   
+      self.save!
     end
   end
-
+  
   def build_users( n )
     n.times do
       self.users.build

@@ -6,6 +6,7 @@ admin.organization = Organization.first
 admin.build_profile
 admin.role = "SuperUser"
 admin.confirmed_at = Time.now
+admin.state = 'active'
 admin.save
 
 
@@ -15,6 +16,7 @@ manager.organization = Organization.first
 manager.build_profile
 manager.role = "Admin"
 manager.confirmed_at = Time.now
+manager.state = 'active'
 manager.save
 
 # Org employee
@@ -23,6 +25,7 @@ employee.organization = Organization.first
 employee.build_profile
 employee.role = "User"
 employee.confirmed_at = Time.now
+employee.state = 'active'
 employee.save
 
 
