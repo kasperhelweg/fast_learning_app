@@ -1,5 +1,5 @@
-<header class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
+<header class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner ">
     <div class="container">
       <a class="brand push-left" href="<%= root_path %>">	
 	<%= image_tag("sendgrid-logo.png", :size => "112x30", alt: "Fastlearning") %>     
@@ -11,6 +11,7 @@
           <li><%= link_to "Kurser",   "#" %></li>
 	  <li class="divider-vertical"></li>
 	  <% if user_signed_in? %>
+	  <li class="avatar"><%= image_tag current_user.avatar.url(:thumb) %></li>
 	    <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<%= current_user.name %> <b class="caret"></b>
