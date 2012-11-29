@@ -91,6 +91,28 @@ footer {
     }
 }
 
+/* ======= Forms ======= */
+#error_explanation {
+    color: #f00;
+    ul {
+	list-style-type:square;      
+	margin: 0 0 18px 0;
+    }
+}
+
+.field_with_errors {
+    display: inline;
+    input { 
+	border: 1px solid #CF0C0C; 
+    }
+}
+
+/* ======= Flahs ======= */
+.alert  { text-shadow: white 1px 1px 0px; color: #3f4c6b; 
+	  font-style: normal; font-weight: normal; font-size: 14px; 
+	  margin-bottom: 10px; padding-top: 8px; line-height: 1em; padding: 15px; 
+	}
+
 /* ======= Misc ======= */
 .debug_dump {
   clear: both;
