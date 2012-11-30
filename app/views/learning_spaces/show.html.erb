@@ -1,12 +1,20 @@
-Hello
 <% content_for :sidebar do %>
-  
-    <%= link_to new_learning_space_person_path( @Organization, @LearningSpace )  do %>    
-    <button class="btn btn-success btn-mini button-margin"><i class="icon-white icon-plus-sign icon-padding"></i>Add people</button> 
+
+<% end %>
+
+<div class="row">
+  <div class="span9">  
+    Velkommen til <%=  %><br>
+  </div>
+
+  <div class="span3">    
+    <%= link_to new_learning_space_person_path( @organization, @learning_space )  do %>    
+      <button class="btn btn-success btn-mini button-margin"><i class="icon-white icon-plus-sign icon-padding"></i>Add people</button> 
     <% end %>
-    
+    <br>
     <%= link_to "#" do %>    
       <button class="btn btn-success btn-mini button-margin"><i class="icon-white icon-plus-sign icon-padding"></i>Create learninplan</button> 
-      <% end %>
-<% end %>
+    <% end %>
+  </div>
+</div>
   

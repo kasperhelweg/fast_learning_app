@@ -11,7 +11,7 @@ class LearningSpace < ActiveRecord::Base
   attr_accessible :name, :users_attributes
     
   # Callbacks
-  before_create   :create_id_hash
+  before_save   :create_id_hash
 
   # Validations
 

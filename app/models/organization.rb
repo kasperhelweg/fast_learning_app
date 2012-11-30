@@ -15,7 +15,7 @@ class Organization < ActiveRecord::Base
   attr_accessible :name, :logo
   
   # Callbacks
-  before_save    :create_id_hash 
+  before_create    :create_id_hash 
 
   # Validations
   validates      :name, presence: true, length: { maximum: 50 }

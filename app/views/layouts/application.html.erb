@@ -20,10 +20,14 @@
 	  <% if user_signed_in? %>	
             <div class="span2">
 	      <div><%= image_tag current_user.organization.logo.url(:thumb) %></div>
-	      <div><%= current_user.organization.name %></div>
+	      <div><%= link_to current_user.organization.name , current_user.organization %></div>
 	        <%= link_to learning_space_path( current_user.organization, current_user.organization.learning_spaces.first )  do %>    
-	          <button class="btn btn-info btn-mini "><i class="icon-white icon-plus-sign icon-padding"></i>Default space</button> 
+	          <button class="btn btn-info btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Default space</button> 
 	        <% end %>
+		<br>
+		 <%= link_to  "Create learningspace", new_learning_space_path( current_user.organization ) %>    
+    
+    
 
 	      <%= yield(:sidebar) %></div>
             <div class="span10"> 
