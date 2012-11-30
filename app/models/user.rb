@@ -17,19 +17,13 @@ class User < ActiveRecord::Base
   has_many                      :enrollments
   has_many                      :classrooms,      :through => :enrollments
 
-  # Paperclip
-  has_attached_file :avatar, 
-                    :styles => { :medium => "140x140>", :thumb => "35x35>" },
-                    :default_url => '/assets/avatars/default_:style.png',
-                    :path => "/avatars/:style/:id/:filename",
-                    :s3_permissions => :public_read
-
   # Accesible
-  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes, :avatar
-  attr_accessor                 :name_required
+  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes
+  attr_accessor                 :name_required, :organization_required
   
   # Callbacks
   after_initialize :set_name_required
+  after_initialize :set_organization_required
 
   before_create   :create_id_hash
   before_create   :create_profile
@@ -37,6 +31,7 @@ class User < ActiveRecord::Base
 
   # Validations
   validates       :name, presence: true, length: { maximum: 50 }, :if => lambda{ self.name_required? }
+  validates       :organization, presence: true, length: { maximum: 50 }, :if => lambda{ self.organization_required? }
 
   ##############################################################
   # Public interface
@@ -81,6 +76,11 @@ class User < ActiveRecord::Base
     self.name_required
   end
 
+  
+  def name_required?
+    self.organization_required
+  end
+
   ##############################################################
   # Private interface
   ##############################################################
@@ -88,6 +88,10 @@ class User < ActiveRecord::Base
 
   def set_name_required
     self.name_required = false
+  end
+
+  def set_organization_required
+    self.organization_required = false
   end
 
   def create_profile

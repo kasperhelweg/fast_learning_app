@@ -1,4 +1,6 @@
 $navbarHeight: 50px;
+$baseFontSize: 14px;
+$baseLineHeight: 20px;
 
 @import "bootstrap";
 
@@ -7,7 +9,7 @@ html {
   overflow-y: scroll;
 }
 
-body { font-family: Helvetica, Arial, sans-serif; font-size:12px; background: #F9F9F9; padding-top: 50px; }
+body { font-family: Helvetica, Arial, sans-serif; background: #F9F9F9; padding-top: 50px; }
 
 section {
   overflow: auto;
@@ -24,7 +26,7 @@ textarea {
   }
 }
 
-.avatar { float: left; margin-top: 6px; margin-left:5px; }
+.avatar { float: left; margin-top: 8px; margin-left:5px; }
 
 .for-flash {height:100px}
 

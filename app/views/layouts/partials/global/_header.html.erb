@@ -11,7 +11,7 @@
           <li><%= link_to "Kurser",   "#" %></li>
 	  <li class="divider-vertical"></li>
 	  <% if user_signed_in? %>
-	  <li class="avatar"><%= image_tag current_user.avatar.url(:thumb) %></li>
+	  <li class="avatar"><%= image_tag current_user.profile.avatar.url(:thumb) %></li>
 	    <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<%= current_user.name %> <b class="caret"></b>
