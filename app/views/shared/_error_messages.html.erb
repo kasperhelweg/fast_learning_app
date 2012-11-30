@@ -1,0 +1,11 @@
+<% if current_user.errors.any? %>
+<div id="error_explanation">
+  <ul>
+    <% current_user.errors.full_messages.each do |msg| %>
+    <% if msg != 'Password digest skal udfyldes' && msg != 'Gentag password skal udfyldes' %>
+    <li><%= msg %></li>
+    <% end %>
+    <% end %>
+  </ul>
+</div>
+<% end %>

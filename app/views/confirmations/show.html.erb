@@ -3,10 +3,16 @@
 
 <%= form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
   <%= devise_error_messages! %>
+  <%= resource.errors.to_hash %>
   <fieldset>
     <legend>Account Activation<% if resource.name %> for <%= resource.name %><% end %></legend>
-
+    
+    <%= f.fields_for :organization, @organization do |o| %>
+      <p><%= o.label :name, "Org name:" %> <%= o.text_field :name %></p>
+    <% end %>
+ 
   <% if @requires_password %>
+      <p><%= f.label :name,'Choose a name:' %> <%= f.text_field :name %></p>
       <p><%= f.label :password,'Choose a Password:' %> <%= f.password_field :password %></p>
       <p><%= f.label :password_confirmation,'Password Confirmation:' %> <%= f.password_field :password_confirmation %></p>
   <% end %>

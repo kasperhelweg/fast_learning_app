@@ -2,6 +2,16 @@
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
+  
+  <%= f.fields_for :profile do |p| %> 
+    <%= image_tag resource.profile.avatar.url( :medium ) %>
+    <div class="clear"></div>
+    <%= p.file_field :avatar %>
+  <% end %>
+
+  
+  <div><%= f.label :navn %><br />
+  <%= f.email_field :name %></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>

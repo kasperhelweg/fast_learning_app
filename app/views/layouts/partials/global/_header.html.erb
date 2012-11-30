@@ -19,7 +19,7 @@
               <ul class="dropdown-menu">
 		<% if current_user.role? :admin %>
 		  <li><%= link_to "Konto", user_path( current_user )  %></li>
-		  <li><%= link_to "Indstillinger", edit_user_path( current_user )  %></li>
+		  <li><%= link_to "Indstillinger", edit_user_registration_path   %></li>
 		<% elsif current_user.role? :user %>
  		  <li><%= link_to "Profil", user_path( current_user )  %></li>
 		  <li><%= link_to "Indstillinger", edit_user_path( current_user )  %></li>

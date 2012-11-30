@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="span4">      
+
+    <%= f.fields_for :profile do |p| %> 
+      <%= image_tag @person.profile.avatar.url( :medium ) %>
+      <div class="clear"></div>
+       <%= p.file_field :avatar %>
+    <% end %>
+
+    <p><h6>Profil</h6></p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    
+  </div>
+  <div class="span4">
+    
+    <p><h6>Password</h6></p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    
+  </div>
+</div>
+
+
+

@@ -120,10 +120,10 @@ ActiveRecord::Schema.define(:version => 20121129185004) do
   add_index "orders", ["id_hash"], :name => "index_orders_on_id_hash", :unique => true
 
   create_table "organizations", :force => true do |t|
-    t.string   "id_hash",           :null => false
-    t.string   "name",              :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "name",              :default => "", :null => false
+    t.string   "id_hash",                           :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -152,9 +152,13 @@ ActiveRecord::Schema.define(:version => 20121129185004) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",             :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id", :unique => true
@@ -200,10 +204,6 @@ ActiveRecord::Schema.define(:version => 20121129185004) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "invitation_token",       :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"

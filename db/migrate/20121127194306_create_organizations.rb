@@ -2,8 +2,8 @@ class CreateOrganizations < ActiveRecord::Migration
   def change
     create_table :organizations do |t|
 
-      t.string :id_hash,      :null => false
-      t.string :name,         :null => false
+      t.string :name,                :null => false, :default => ""
+      t.string :id_hash,             :null => false
       
       t.timestamps
     end

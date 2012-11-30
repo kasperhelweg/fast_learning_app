@@ -15,9 +15,11 @@ class Organization < ActiveRecord::Base
   attr_accessible :name, :logo
   
   # Callbacks
-  before_create   :create_id_hash
+  before_save    :create_id_hash 
 
   # Validations
+  validates      :name, presence: true, length: { maximum: 50 }
+
 
   ##############################################################
   # Public interface
@@ -26,12 +28,13 @@ class Organization < ActiveRecord::Base
   def to_param
     id_hash
   end
-  
+    
   ##############################################################
   # Private interface
   ##############################################################
   private
 
+  
   def create_id_hash
     self.id_hash = Digest::SHA2.hexdigest( self.name )[0..6]
   end

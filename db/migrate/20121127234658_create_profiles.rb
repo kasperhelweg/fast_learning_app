@@ -7,5 +7,6 @@ class CreateProfiles < ActiveRecord::Migration
       t.timestamps
     end
     add_index :profiles, :user_id, :unique => true
+    add_attachment :profiles, :avatar
   end
 end

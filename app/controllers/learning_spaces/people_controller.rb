@@ -12,7 +12,6 @@ class LearningSpaces::PeopleController < ApplicationController
     params[:learning_space][:users_attributes].each do |user|
       user = @learning_space.users.build( name: user[1]['name'], email: user[1]['email'] )
       user.organization = @learning_space.organization
-      user.name_required = true
       
       membership = @learning_space.memberships.build      
       membership.user = user

@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
 
   # Associations
   belongs_to                    :organization
-
+  accepts_nested_attributes_for :organization
+  
   has_one                       :profile
   accepts_nested_attributes_for :profile
 
@@ -18,20 +19,17 @@ class User < ActiveRecord::Base
   has_many                      :classrooms,      :through => :enrollments
 
   # Accesible
-  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes
-  attr_accessor                 :name_required, :organization_required
+  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes, :organization_attributes
+  attr_accessor                 :name_required
   
   # Callbacks
-  after_initialize :set_name_required
-  after_initialize :set_organization_required
-
-  before_create   :create_id_hash
-  before_create   :create_profile
-  before_save     :fix_name
+  after_initialize { set_name_required( false ) }
+    
+  before_save    :create_id_hash
+  before_save    :fix_name
 
   # Validations
   validates       :name, presence: true, length: { maximum: 50 }, :if => lambda{ self.name_required? }
-  validates       :organization, presence: true, length: { maximum: 50 }, :if => lambda{ self.organization_required? }
 
   ##############################################################
   # Public interface
@@ -53,6 +51,17 @@ class User < ActiveRecord::Base
     update_attributes(p)
   end
 
+  def attempt_setup_user( params )
+    u = {}
+    u[:password] = params[:password]
+    u[:password_confirmation] = params[:password_confirmation]
+    u[:name] = params[:name]
+    u[:organization_attributes] = params[:organization_attributes]
+    self.role = "Admin"
+    update_attributes( u )
+  end
+  
+   
   def password_required?
     # Password is required if it is being set, but not for new records
     if !persisted? 
@@ -76,26 +85,16 @@ class User < ActiveRecord::Base
     self.name_required
   end
 
-  
-  def name_required?
-    self.organization_required
-  end
 
+  
   ##############################################################
   # Private interface
   ##############################################################
   private
 
-  def set_name_required
-    self.name_required = false
-  end
-
-  def set_organization_required
-    self.organization_required = false
-  end
-
-  def create_profile
-    self.build_profile
+  
+  def set_name_required( b )
+    self.name_required = b
   end
 
   def create_id_hash
