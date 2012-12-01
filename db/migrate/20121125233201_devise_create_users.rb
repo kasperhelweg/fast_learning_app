@@ -8,7 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :organization_id,    :null => false, :default => 0
       t.string :role,                :null => false, :default => ""
 
-      t.string :state,               :null => false, :default => 'staged'
+      t.string :state,               :null => false, :default => ""
       
       ## Database authenticatable
       t.string :email,               :null => false, :default => ""

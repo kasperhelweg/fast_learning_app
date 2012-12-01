@@ -9,14 +9,9 @@ class ConfirmationsController < Devise::ConfirmationsController
     with_unconfirmed_confirmable do
       if @confirmable.has_no_password?
       
-        @confirmable.build_profile
-        @confirmable.build_organization
-
-        @confirmable.name_required = true
         @confirmable.attempt_setup_user( params[:user] )
   
-        if @confirmable.valid?
-          @confirmable.organization.learning_spaces.create(name: "default_space")
+        if @confirmable.valid?          
           do_confirm
         else
           do_show

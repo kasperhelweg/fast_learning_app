@@ -183,12 +183,12 @@ ActiveRecord::Schema.define(:version => 20121129185004) do
   add_index "roles", ["name"], :name => "index_roles_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "name",                                 :default => "",       :null => false
-    t.string   "id_hash",                                                    :null => false
-    t.integer  "organization_id",                      :default => 0,        :null => false
-    t.string   "role",                                 :default => "",       :null => false
-    t.string   "state",                                :default => "staged", :null => false
-    t.string   "email",                                :default => "",       :null => false
+    t.string   "name",                                 :default => "", :null => false
+    t.string   "id_hash",                                              :null => false
+    t.integer  "organization_id",                      :default => 0,  :null => false
+    t.string   "role",                                 :default => "", :null => false
+    t.string   "state",                                :default => "", :null => false
+    t.string   "email",                                :default => "", :null => false
     t.string   "encrypted_password",                   :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -202,8 +202,8 @@ ActiveRecord::Schema.define(:version => 20121129185004) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.string   "invitation_token",       :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"

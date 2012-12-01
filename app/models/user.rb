@@ -23,7 +23,8 @@ class User < ActiveRecord::Base
   attr_accessor                 :name_required
   
   # Callbacks
-  after_initialize { set_name_required( false ) }
+  after_initialize { set_name_required( true ) }
+  before_create    { set_state( 'born' ) }
     
   before_save    :create_id_hash
   before_save    :fix_name
@@ -44,24 +45,22 @@ class User < ActiveRecord::Base
   end
 
   # Devise
-  def attempt_set_password( params )
-    p = {}
-    p[:password] = params[:password]
-    p[:password_confirmation] = params[:password_confirmation]
-    update_attributes(p)
-  end
-
   def attempt_setup_user( params )
+    
+    self.build_profile
+    self.build_organization
+    self.role = "Admin"
+    
     u = {}
     u[:password] = params[:password]
     u[:password_confirmation] = params[:password_confirmation]
-    u[:name] = params[:name]
     u[:organization_attributes] = params[:organization_attributes]
-    self.role = "Admin"
-    update_attributes( u )
+    
+    if update_attributes( u )
+      self.organization.learning_spaces.create(name: "default_space")
+    end
   end
   
-   
   def password_required?
     # Password is required if it is being set, but not for new records
     if !persisted? 
@@ -84,8 +83,6 @@ class User < ActiveRecord::Base
   def name_required?
     self.name_required
   end
-
-
   
   ##############################################################
   # Private interface
@@ -97,6 +94,11 @@ class User < ActiveRecord::Base
     self.name_required = b
   end
 
+  # Temporary function
+  def set_state( state )
+    self.state = state
+  end
+  
   def create_id_hash
     self.id_hash = Digest::SHA2.hexdigest( self.email )[0..6]
   end
