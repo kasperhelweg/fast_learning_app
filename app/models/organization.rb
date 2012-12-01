@@ -33,7 +33,6 @@ class Organization < ActiveRecord::Base
   # Private interface
   ##############################################################
   private
-
   
   def create_id_hash
     self.id_hash = Digest::SHA2.hexdigest( self.name )[0..6]
