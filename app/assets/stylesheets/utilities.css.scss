@@ -1,3 +1,11 @@
 /* ======= Utility ======= */
-.icon-padding { padding-right: 5px }
-.button-margin { margin-bottom: 10px; padding: 5px }
+.btn {	       
+    margin-bottom: 5px;
+    a {
+      text-decoration: none;
+	&:hover { 
+	text-decoration: none;
+	}
+    }  
+}
+
