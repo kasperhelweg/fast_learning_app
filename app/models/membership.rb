@@ -23,9 +23,8 @@ class Membership < ActiveRecord::Base
   # Private interface
   ##############################################################
   private
+
   def set_admin
-    if self.user.admin_for_space 
-      self.admin = true
-    end
+    self.admin = self.user.admin_for_space
   end
 end
