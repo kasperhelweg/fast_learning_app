@@ -14,13 +14,14 @@ class User < ActiveRecord::Base
 
   has_many                      :memberships
   has_many                      :learning_spaces, :through => :memberships
+  
 
   has_many                      :enrollments
   has_many                      :classrooms,      :through => :enrollments
 
   # Accesible
-  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes, :organization_attributes
-  attr_accessor                 :name_required
+  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes, :organization_attributes, :admin_for_space
+  attr_accessor                 :name_required, :admin_for_space
   
   # Callbacks
   after_initialize { set_name_required( true ) }

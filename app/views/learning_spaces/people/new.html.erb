@@ -1,34 +1,17 @@
 <%= form_for( @learning_space, :url => learning_space_people_path( @learning_space.organization, @learning_space ), 
               :method => :post, 
               :html => { :class => 'form-inline' } ) do |f| %>
-<%= @u %>
-<% if @learning_space.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@learning_space.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-          <ul>
-            <% @learning_space.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-  <%= f.fields_for :memberships do |m| %>
-    <% if m.object.new_record? %>
-    
-      <%= m.fields_for :user do |u| %>
+  <%= f.fields_for :users do |u| %>
+    <% if u.object.new_record? %>
       <div>
 	<%= u.text_field :name, class: 'input-large', placeholder: 'navn' %>
 	<%= u.text_field :email, class: 'input-large', placeholder: 'email' %>
       </div>
-        <%= m.check_box :admin %>
+      <%= u.check_box :admin_for_space %>
       <br>
-      <br>
-    
-      
-      <% end %>
-      <% end %>
-      <% end %>
+      <br> 
+    <% end %>
+  <% end %>
       <div><%= f.submit "OK", class: 'btn' %></div>
 <% end %>
