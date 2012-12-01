@@ -6,21 +6,19 @@ class LearningSpaces::PeopleController < ApplicationController
   end
 
   def create
-    @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id] ) 
-    
-    # Also set ROLE using dyn. attr_accesible
-    params[:learning_space][:users_attributes].each do |user|
-      user = @learning_space.users.build( name: user[1]['name'], email: user[1]['email'] )
-      user.organization = @learning_space.organization
+    @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id] )
+    params[:learning_space][:memberships_attributes].each do |membership_attributes|
       
-      membership = @learning_space.memberships.build      
-      membership.user = user
-      membership.admin = true
+      man_attr = membership_attributes[1]      
+      user_attr = membership_attributes[1][:user_attributes]      
+      
+      membership = @learning_space.memberships.build( man_attr )
+      user = membership.build_user( user_attr )
+
     end
 
     if @learning_space.valid?
       if @learning_space.stage_users
-        flash[:success] = "Users created"
         redirect_to current_user
       else
         render 'new'

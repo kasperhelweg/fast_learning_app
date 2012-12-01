@@ -31,7 +31,7 @@ textarea {
     text-align: center;
     h1 {
 	margin-bottom: 10px;
-    }
+  }
 }
 
 /* MOVE THIS STUFF */
@@ -40,14 +40,14 @@ textarea {
 .for-flash {height:100px}
 
 .support {
-    display: block;    
+    
     left: 0;
     position: fixed;
     top: 100px;
     z-index: 99999;
     a {
+	color: $grayLight;
 	background: #000;	
-	border: none;
 	-webkit-transform: rotate(-90deg);
 	-moz-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
@@ -62,8 +62,8 @@ textarea {
 	padding: 0 12px;
 	
 	&:hover { 
-	    color: $;
-	    text-decoration: underline;
+	    color: #FFF;
+	    text-decoration: none;
 	}
     }  
 }

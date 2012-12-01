@@ -3,7 +3,7 @@
 
 <%= form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
   <%= devise_error_messages! %>
-  <%= resource.errors.to_hash %>
+  <% resource.errors.to_hash %>
   <fieldset>
     <legend>Account Activation<% if resource.name %> for <%= resource.name %><% end %></legend>
     

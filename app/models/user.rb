@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     
   before_save    :create_id_hash
   before_save    :fix_name
-
+  
   # Validations
   validates       :name, presence: true, length: { maximum: 50 }, :if => lambda{ self.name_required? }
 

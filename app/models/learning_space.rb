@@ -5,10 +5,10 @@ class LearningSpace < ActiveRecord::Base
   
   has_many :memberships
   has_many :users, :through => :memberships
-  accepts_nested_attributes_for :users
+  accepts_nested_attributes_for :memberships
   
   # Accesible
-  attr_accessible :name, :users_attributes
+  attr_accessible :name, :memberships_attributes
     
   # Callbacks
   before_save   :create_id_hash
@@ -25,19 +25,23 @@ class LearningSpace < ActiveRecord::Base
 
   def stage_users
     self.transaction do
-      self.users.each do |user|
-        if user.new_record?
+      self.memberships.each do |membership|
+        if membership.new_record?
+          user = membership.user
+          user.organization = self.organization
           user.skip_confirmation!       
           user.state = 'staged'
+          user.role = "user"
+          user.save
         end
       end   
       self.save!
     end
   end
-  
+
   def build_users( n )
     n.times do
-      user = self.users.build
+      self.memberships.build.build_user
     end
   end
 
