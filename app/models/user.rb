@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
   has_many                      :classrooms,      :through => :enrollments
 
   # Accesible
-  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :profile_attributes, :organization_attributes, :admin_for_space
+  attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, 
+                                :skip_invitation, :profile_attributes, :organization_attributes, :admin_for_space
+  
   attr_accessor                 :name_required, :admin_for_space
   
   # Callbacks
@@ -84,7 +86,14 @@ class User < ActiveRecord::Base
   def name_required?
     self.name_required
   end
-  
+
+  def stage( org )
+    self.organization = org
+    self.build_profile
+    self.skip_confirmation!       
+    self.state = 'staged'
+    self.role = "User"
+  end
   ##############################################################
   # Private interface
   ##############################################################

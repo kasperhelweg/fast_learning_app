@@ -6,10 +6,9 @@ class LearningSpace < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
   accepts_nested_attributes_for :users
-  accepts_nested_attributes_for :memberships
-  
+    
   # Accesible
-  attr_accessible :name, :users_attributes, :memberships_attributes
+  attr_accessible :name, :users_attributes
     
   # Callbacks
   before_save   :create_id_hash
@@ -22,20 +21,6 @@ class LearningSpace < ActiveRecord::Base
   
   def to_param
     id_hash
-  end
-
-
-  # MAYBE MOVE TO USER OMDEL
-  def stage_users
-    
-    self.users.each do |user|
-      if user.new_record?
-        user.organization = self.organization
-        user.skip_confirmation!       
-        user.state = 'staged'
-        user.role = "User"
-      end
-    end   
   end
 
   def build_users( n )

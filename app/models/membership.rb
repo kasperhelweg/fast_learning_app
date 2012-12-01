@@ -10,9 +10,7 @@ class Membership < ActiveRecord::Base
   attr_accessible :admin, :learning_space_id # ONLY FOR TESTING
   
   # Callbacks
-  before_save { if self.user.admin_for_space 
-                self.admin = true
-                end}
+  before_save     :set_admin 
 
   # Validations
   validates_uniqueness_of :user_id, :scope => :learning_space_id
@@ -25,5 +23,9 @@ class Membership < ActiveRecord::Base
   # Private interface
   ##############################################################
   private
-
+  def set_admin
+    if self.user.admin_for_space 
+      self.admin = true
+    end
+  end
 end
