@@ -31,6 +31,32 @@ FastLearningApp::Application.routes.draw do
   # Roles
   resources :roles
 
+  
+  
+  # Courses
+  resources :courses  
+  resources :classrooms, except: [:show] do
+    match ':id(.:format)',  to: 'classrooms#show', as: :page, via: :get
+  end
+
+  # Courses
+  #resources :courses
+
+  # Classrooms
+  #resources :classrooms
+  
+  # Assets
+  resources :resources
+  
+  # Orders
+  resources :orders
+
+  # Products
+  resources :products
+
+  # LearningPlans
+  resources :learning_plans
+
   # Organisations
   resources :organizations, :path => '' do
     resources :users, :as => 'people',
@@ -47,24 +73,7 @@ FastLearningApp::Application.routes.draw do
     :path => 'people',
     :controller => 'learning_spaces/people'
   end
-  
-  # Courses
-  resources :courses
 
-  # Classrooms
-  resources :classrooms
-  
-  # Assets
-  resources :resources
-  
-  # Orders
-  resources :orders
-
-  # Products
-  resources :products
-
-  # LearningPlans
-  resources :learning_plans
 
   #  resources :companies, :path => '', :only => [] do 
  # resources :companies, :path => '', :only => [], :shallow => true do 

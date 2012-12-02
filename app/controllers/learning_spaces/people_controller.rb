@@ -11,6 +11,7 @@ class LearningSpaces::PeopleController < ApplicationController
       user_attr = users_attributes[1]
       user = @learning_space.users.build( user_attr )  
       user.stage( @learning_space.organization )
+      #user.invite!
     end
     
     if @learning_space.save

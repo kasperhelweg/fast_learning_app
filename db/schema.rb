@@ -134,13 +134,21 @@ ActiveRecord::Schema.define(:version => 20121129185004) do
   add_index "organizations", ["name"], :name => "index_organizations_on_name", :unique => true
 
   create_table "pages", :force => true do |t|
+    t.string   "id_hash",       :null => false
     t.string   "title",         :null => false
+    t.string   "glyph"
+    t.string   "desc"
+    t.integer  "order"
     t.text     "content"
+    t.string   "slug"
     t.integer  "pageable_id"
     t.string   "pageable_type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "pages", ["id_hash"], :name => "index_pages_on_id_hash", :unique => true
+  add_index "pages", ["slug"], :name => "index_pages_on_slug"
 
   create_table "products", :force => true do |t|
     t.string   "name"

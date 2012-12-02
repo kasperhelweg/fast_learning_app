@@ -1,0 +1,23 @@
+<div class="splash-nav">
+  <div class="splash-nav-inner">
+    <div class="inner">
+      <ul>
+	  
+	<% @sections.each do |page| %>
+	  
+	<li class="">
+	  <%= link_to( [@classroom, page] ) do %>
+	  <center> <i class="<%=page.glyph + " glyph" %>" ></i></center>
+	  <h5><%= page.title %></h5>
+	  <p><%= page.desc %></p>
+	  <% end %>
+   	</li>
+	  
+	<% end %>
+	  
+        <div class="clear"></div>
+      </ul>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>

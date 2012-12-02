@@ -1,0 +1,12 @@
+<%= @enrollment.course.title %>
+<br>
+<%= @enrollment.course.desc %>
+<br>
+<%= form_for( @enrollment ) do |f| %>
+  <%= hidden_field_tag "enrollment[status]", 'enrolled' %>
+  <% @enrollment.course.classrooms.each do |classroom| %>
+    <%= radio_button_tag 'enrollment[classroom_id]', classroom.id, true%>   
+    <%= classroom.online_date %><br>
+  <% end %>
+  <div><%= f.submit "Fortsæt til trin 2", class: "btn pull-right", style: "margin-right:76px;" %></div>
+<% end %>

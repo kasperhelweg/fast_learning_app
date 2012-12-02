@@ -1,0 +1,177 @@
+/* ======= Typography ======= */
+h1                { text-shadow: white 1px 1px 0px; color: #333333; font-style: normal; font-weight: normal; font-size: 38px; margin-bottom: 0.5em; line-height: 1.1em; }
+h2                { text-shadow: white 1px 1px 0px; color: #333333; font-style: normal; font-weight: 200; font-size: 28px; margin-bottom: 10px; line-height: 1.25em; }
+h3                { text-shadow: white 1px 1px 0px; color: #333333; font-style: normal; font-weight: normal; font-size: 24px; margin-bottom: 10px; line-height: 1.1em; }
+h3.intro          { color: #235B88; font-size: 21px; text-align: center; line-height: 1.3em; }
+h4                { text-shadow: white 1px 1px 0px; color: #599716; font-style: normal; font-weight: normal; font-size: 26px; margin-bottom: 10px; padding-top: 8px; line-height: 1em; }
+
+h5                { text-shadow: white 0px 0px 0px; color: #3f4c6b; font-style: normal; font-weight: bold; font-size: 13px; margin-bottom: 0.5em; line-height: 1em; }
+h6                { text-shadow: white 1px 1px 0px; color: #599716; font-style: normal; font-weight: normal; font-size: 19px; margin-bottom: 10px; padding-top: 8px; line-height: 1em; }
+
+
+h7                { text-shadow: white 0px 0px 0px; color: #3f4c6b; font-style: normal; font-weight: bold; font-size: 10px; margin-bottom: 0.5em; line-height: 1em; }
+h8                { text-shadow: white 0px 0px 0px; color: #3f4c6b; font-style: normal; font-weight: bold; font-size: 13px; margin-bottom: 0.0em; line-height: 1em; }
+
+li ul, li ol      { margin: 0 1.5em; }
+ul                { margin: 0 1em 1.5em; font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;; list-style-type: disc; color: #4D4F50; }
+
+p { font-size: 1.2em; line-height: 1.7em; text-align:justify; }
+
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ======= Structure: dashboard ======= */
+
+.cl-header {  border: 1px solid rgba(255,255,255,0.40); /*opacity: 0.9;*/}
+.cl-header-inner {
+    margin-bottom: 25px;
+    padding: 10px 0 12px;
+    border-top: 1px dashed #8bbfe9;
+    background: #b6daf3; 
+}
+.cl-header h3 {
+	font-size: 12px;
+	color: #020202;
+	color: #333;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	
+	white-space: nowrap;
+	text-shadow: 0px 1px 0px #e5e5ee;
+}
+
+.cl-header h3.alt { text-shadow: white 0px 1px 0px; color: #3f4c6b; font-style: normal; font-weight: bold; font-size: 16px; margin-bottom: 0.0em; line-height: 1em; margin-left: 10px; }
+
+/* ======= Structure: thumbs ======= */
+.thumb {
+    list-style: none;
+    background-color: #FFFFFF;
+    background-color: rgba(255,255,255,0.50);
+    padding: 35px;
+    display: inline-block;
+    margin: 10px;
+    float: left;
+    /* Original */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.20);
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.20);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.20);
+    /* Alternative */
+    /*box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+      -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+      -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);*/
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    width: auto;
+    /*max-width: 252px;*/
+    position: relative;
+	/*overflow:hidden;*/
+    border: 1px solid #FFF;/*opacity: 0.9;*/
+	
+}
+
+.thumb:hover {
+    /*width: 340px;*/
+    /*border: 1px solid #e94f86;*/
+    /*border: 1px solid #B3B3B3;*/
+    border: 1px solid #FFF;/*opacity: 0.9;*/
+    /*background-color:#FFF;*/
+    
+    /* Original */
+    /*box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.40);
+      -moz-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.40);
+      -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.40);*/
+    /* Alternative */
+    /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);*/
+    
+    background-color: rgba(255,255,255,0.95);/*background:url(/common/img/Bg_Noise.png);*//*opacity:1;*/
+}
+
+.thumb.L {
+	width: 205px;
+}
+
+.thumb-inner {
+	height: auto;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	position: relative;
+}
+
+.thumb h3 {
+	font-size: 12px;
+	color: #020202;
+	color: #333;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	
+	white-space: nowrap;
+	text-shadow: 0px 1px 0px #e5e5ee;
+}
+.thumb h3.alt {
+	font-size: 16px;
+	margin-left: 20px;
+	font-family: "BreeSerifRegular", Helvetica, Arial, sans-serif;
+	line-height: 19px;
+	white-space: normal;
+}
+
+.thumb h4 {
+	font-size: 9px;
+	color: #999;
+	margin: 0 0 10px 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:300;
+	white-space: nowrap;
+	line-height: 16px;
+}
+.thumb h4.alt {
+	margin: 0 0 5px 20px;	
+}
+
+.thumb-inner.L {
+	width: 252px;/*max-height: 350px;*/
+}
+
+.ribbon-wrapper {
+	width: 85px;
+	height: 88px;
+	overflow: hidden;
+	position: absolute;
+	top: -3px;
+	right: -3px;
+	z-index: 40;
+}
+.ribbon {
+	font: bold 12px Sans-Serif;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	position: relative;
+	padding: 7px 0;
+	left: -5px;
+	top: 15px;
+	width: 120px;
+	background-color: #CCCCCC;
+	-webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon.green {
+	background-color: #BFDC7A;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+	background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+	background-image: -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+	background-image: -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+	background-image: -o-linear-gradient(top, #BFDC7A, #8EBF45);
+	color: #fff;
+}

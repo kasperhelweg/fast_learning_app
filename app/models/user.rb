@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   # Callbacks
   after_initialize { set_name_required( true ) }
-  before_create    { set_state( 'born' ) }
+  before_create    { set_state( 'born' ) unless self.state }
     
   before_save    :create_id_hash
   before_save    :fix_name

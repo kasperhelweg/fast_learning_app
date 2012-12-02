@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="span12">  
+ 
+    <div class="cl-header cl-header-inner">
+  <h3 class="alt">Læringsrum</h3>
+</div>
+
+    
+  <% current_user.enrollments.each do |enrollment| %>
+    <% if enrollment.status == 'enrolled' %>    
+      <%= link_to [enrollment.classroom, enrollment.classroom.pages.where("title = 'Forside'").first] do %> 
+        <div class="classrooms thumb L">
+	  <div class="ribbon-wrapper">
+	    <div class="ribbon" style="background-color: <%= enrollment.classroom.course.color %>"><%= enrollment.classroom.online_date.strftime("%d %b %y") %></div>
+	  </div>
+	  <div class="thumb-inner L">
+	    <h3 class="alt"><div><%= enrollment.classroom.course.title %></div></h3>
+	    <h4 class="alt">Du er tilmeldt dette læringsrum</h4>
+	  </div>
+	</div>  
+      <% end %>
+    <% else %>
+      <%= link_to edit_enrollment_path( enrollment ) do %> 
+        <div class="classrooms thumb L">
+	  <div class="ribbon-wrapper">
+	  <div class="ribbon" style="background-color: #878787">Inviteret</div>
+	  </div>
+	  <div class="thumb-inner L">
+	    <h3 class="alt"><div><%= enrollment.course.title %></div></h3>
+	    <h4 class="alt">Du er tilmeldt dette læringsrum</h4>
+	  </div>
+	</div>
+      <% end %>
+  <% end %>
+<% end %>
+
+  <div class="clear"></div>   
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
