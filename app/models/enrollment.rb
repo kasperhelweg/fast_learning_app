@@ -5,13 +5,13 @@ class Enrollment < ActiveRecord::Base
   belongs_to :course
 
   # Accesible
-  attr_accessible :user_id, :course_id, :classroom_id, :status #ONLY FOR TESTING
+  attr_accessible :user_id, :course_id, :classroom_id, :state #ONLY FOR TESTING
 
   # Callbacks
   before_save   :create_id_hash
   
   # Validations
-  validates :user_id, :course_id, :status, presence: true  
+  validates :user_id, :course_id, :state, presence: true  
   validates :user_id, :uniqueness => { :scope => [:course_id, :classroom_id] }  
 
   ##############################################################

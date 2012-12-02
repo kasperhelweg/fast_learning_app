@@ -9,8 +9,7 @@ class EnrollmentsController < ApplicationController
     #render 'edit'
     if @enrollment.update_attributes( params[:enrollment] )
       flash[:success] = "cool"      
-      organization = current_user.organization
-      redirect_to organization_path( organization )
+      redirect_to organization_path( current_user.organization )
     else
       render 'edit'
     end

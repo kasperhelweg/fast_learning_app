@@ -1,13 +1,13 @@
 <div class="row">
   <div class="span12">  
  
-    <div class="cl-header cl-header-inner">
+    <div class="">
   <h3 class="alt">Læringsrum</h3>
 </div>
 
     
   <% current_user.enrollments.each do |enrollment| %>
-    <% if enrollment.status == 'enrolled' %>    
+    <% if enrollment.state == 'enrolled' %>    
       <%= link_to [enrollment.classroom, enrollment.classroom.pages.where("title = 'Forside'").first] do %> 
         <div class="classrooms thumb L">
 	  <div class="ribbon-wrapper">

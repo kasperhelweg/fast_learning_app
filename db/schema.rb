@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20121129185004) do
     t.integer  "classroom_id"
     t.integer  "user_id",      :null => false
     t.integer  "course_id",    :null => false
-    t.string   "status",       :null => false
+    t.string   "state",        :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

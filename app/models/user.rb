@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   # Callbacks
   after_initialize { set_name_required( true ) }
-  before_create    { set_state( 'born' ) unless self.state }
+  #before_create    { set_state( 'born' ) unless self.state }
     
   before_save    :create_id_hash
   before_save    :fix_name
@@ -35,6 +35,13 @@ class User < ActiveRecord::Base
   # Validations
   validates       :name, presence: true, length: { maximum: 50 }, :if => lambda{ self.name_required? }
 
+
+  state_machine :state, initial: :born do
+    event :activate do
+      transition :born => :active
+    end
+  end
+  
   ##############################################################
   # Public interface
   ##############################################################
@@ -61,6 +68,7 @@ class User < ActiveRecord::Base
     
     if update_attributes( u )
       self.organization.learning_spaces.create(name: "default_space")
+      self.activate
     end
   end
   
@@ -91,7 +99,7 @@ class User < ActiveRecord::Base
     self.organization = org
     self.build_profile
     self.skip_confirmation!       
-    self.state = 'staged'
+    #self.state = 'staged'
     self.role = "User"
   end
   ##############################################################

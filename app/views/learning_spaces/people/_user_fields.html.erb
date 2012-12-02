@@ -1,0 +1,9 @@
+<fieldset>
+  <div>
+    <%= f.text_field :name, class: 'input-large', placeholder: 'navn' %>
+    <%= f.text_field :email, class: 'input-large', placeholder: 'email' %>
+  </div>
+  admin <%= f.check_box :admin_for_space %>
+  <br>
+  <%= link_to "remove", "#", class: "remove_fields" %>
+</fieldset>

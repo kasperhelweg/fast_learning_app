@@ -1,17 +1,14 @@
 <%= form_for( @learning_space, :url => learning_space_people_path( @learning_space.organization, @learning_space ), 
               :method => :post, 
               :html => { :class => 'form-inline' } ) do |f| %>
-
   <%= f.fields_for :users do |u| %>
     <% if u.object.new_record? %>
-      <div>
-	<%= u.text_field :name, class: 'input-large', placeholder: 'navn' %>
-	<%= u.text_field :email, class: 'input-large', placeholder: 'email' %>
-      </div>
-      admin <%= u.check_box :admin_for_space %>
-      <br>
-      <br> 
+      <%= render 'user_fields', f: u %>
     <% end %>
   <% end %>
-      <div><%= f.submit "OK", class: 'btn' %></div>
+  <br>
+  <%= link_to_add_fields "add user", f, :users %>
+  <br>
+  <br>
+  <div><%= f.submit "Add people", class: 'btn' %></div>
 <% end %>

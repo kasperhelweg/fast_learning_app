@@ -3,7 +3,7 @@
 <%= @enrollment.course.desc %>
 <br>
 <%= form_for( @enrollment ) do |f| %>
-  <%= hidden_field_tag "enrollment[status]", 'enrolled' %>
+  <%= hidden_field_tag "enrollment[state]", 'enrolled' %>
   <% @enrollment.course.classrooms.each do |classroom| %>
     <%= radio_button_tag 'enrollment[classroom_id]', classroom.id, true%>   
     <%= classroom.online_date %><br>

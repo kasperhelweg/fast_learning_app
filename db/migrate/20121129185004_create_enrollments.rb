@@ -6,7 +6,7 @@ class CreateEnrollments < ActiveRecord::Migration
       t.integer :classroom_id
       t.integer :user_id,          :null => false         
       t.integer :course_id,        :null => false     
-      t.string  :status,           :null => false             
+      t.string  :state,            :null => false             
 
       t.timestamps
     end
