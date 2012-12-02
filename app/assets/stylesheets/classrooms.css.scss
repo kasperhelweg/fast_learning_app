@@ -2,36 +2,3 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-/* ======= Structure: splash ======= */
-.splash-nav { width: 100%; position:fixed;}
-
-.splash-nav-inner {
-  padding: 0px;
-  margin: 0px 0px 0px;
-  border-bottom: 1px dashed #91c4ea;
-  background: #b6daf3 ; }
-
-.splash-nav ul {
-  list-style: none;
-  margin: 0 10px;
-  padding: 0;
-  border-left: 1px dashed #8bbfe9; }
-
-.splash-nav ul li {
-  float: left;
-  padding: 0;
-  border-top: 1px solid #c7e3f7;;
-  border-right: 1px dashed #8bbfe9; }
-
-.splash-nav ul li a {
-  display: inline-block;
-  padding: 20px 25px 10px;
-  text-decoration: none;
-  border-bottom: none; }
-
-.splash-nav ul li a:hover {
-    background: #fff; /* Old browsers */    
-    border-bottom: none !important;
-    text-decoration: none; }
-

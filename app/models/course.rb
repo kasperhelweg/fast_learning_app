@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
   attr_accessible :desc, :short_desc, :title, :color
   
   # Callbacks
-  before_create :create_id_hash
+  before_save :create_id_hash
   
   # Validations
   validates :title, :color, :short_desc, :desc,  presence: true  
@@ -31,5 +31,4 @@ class Course < ActiveRecord::Base
   def create_id_hash
     self.id_hash = Digest::SHA2.hexdigest(self.title)[0..6]
   end
-
 end

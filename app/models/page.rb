@@ -9,7 +9,7 @@ class Page < ActiveRecord::Base
   attr_accessible :title, :glyph, :desc, :content
   
   # Callbacks
-  before_create :create_id_hash
+  before_save :create_id_hash
 
   # Validations
   validates :title, :content, presence: true  

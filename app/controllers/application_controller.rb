@@ -25,5 +25,4 @@ class ApplicationController < ActionController::Base
   #    organization_path( organization )
   #  end
   #end
-
 end

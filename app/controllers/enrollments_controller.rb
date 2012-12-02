@@ -1,6 +1,5 @@
 class EnrollmentsController < ApplicationController
 
-
   def edit
     @enrollment = Enrollment.find_by_id_hash( params[:id] )
   end
@@ -15,7 +14,5 @@ class EnrollmentsController < ApplicationController
     else
       render 'edit'
     end
-
   end
-
 end

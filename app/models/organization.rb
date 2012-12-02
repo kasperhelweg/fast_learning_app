@@ -36,6 +36,5 @@ class Organization < ActiveRecord::Base
   
   def create_id_hash
     self.id_hash = Digest::SHA2.hexdigest( self.name )[0..6]
-  end
-  
+  end 
 end

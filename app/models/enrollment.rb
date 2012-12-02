@@ -8,7 +8,7 @@ class Enrollment < ActiveRecord::Base
   attr_accessible :user_id, :course_id, :classroom_id, :status #ONLY FOR TESTING
 
   # Callbacks
-  before_create   :create_id_hash
+  before_save   :create_id_hash
   
   # Validations
   validates :user_id, :course_id, :status, presence: true  

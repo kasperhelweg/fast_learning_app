@@ -12,7 +12,7 @@ class Classroom < ActiveRecord::Base
   attr_accessible :online_date
 
   # Callbacks
-  before_create :create_id_hash
+  before_save :create_id_hash
   before_create :set_dates
 
   # Validations
@@ -41,5 +41,4 @@ class Classroom < ActiveRecord::Base
     self.starts = self.online_date - 14
     self.ends = self.online_date + 14
   end
-  
 end

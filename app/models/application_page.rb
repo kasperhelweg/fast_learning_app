@@ -9,5 +9,4 @@ class ApplicationPage < ActiveRecord::Base
   # Callbacks
 
   # Validations
-
 end

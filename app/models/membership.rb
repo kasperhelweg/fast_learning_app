@@ -4,8 +4,6 @@ class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :learning_space
   
-  
-    
   # Accesible
   attr_accessible :admin, :learning_space_id # ONLY FOR TESTING
   

@@ -1,4 +1,79 @@
-/* ======= Typography ======= */
+
+
+
+/* ======= UTILITY ======= */
+
+
+/* ======= Buttons ======= */
+.icon-padding { padding-right: 5px }
+.button-margin { margin-bottom: 10px; }
+
+/* ======= Colors ======= */
+$grayMediumLight: #eaeaea;
+$grayLight: #eaeaea;
+
+
+.inner            { margin: 0 auto; width: 960px; }
+.left             { display: inline; float: left; }
+.right            { display: inline; float: right; }
+.center           { text-align: center; }
+img.left          { margin: 0px 25px 20px 0px; }
+img.right         { margin: 0px 0px 20px 25px; }
+.clear            { clear: both; font-size: 0; height: 0; line-height: 0; }
+.clearfixafter    { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+* html .clearfix  { height: 1%; }
+.clearfix         { overflow: hidden; display: inline-block; }
+.glyph            { margin-bottom: 10px; }
+.dglyph           { margin-right: 10px; }
+.content          { margin-top: 30px; } 
+.content-classroom          { margin-top: 75px; } 
+.avatar           { margin-top: 8px; margin-left:5px; }
+.pad-button       { padding: 25px; }
+.for-flash {height:100px}
+/* #user_avatar      { color: #fff; margin-top: 60px; margin-left:5px; } */
+.btn {	       
+    margin-bottom: 5px;
+    a {
+      text-decoration: none;
+	&:hover { 
+	text-decoration: none;
+	}
+    }  
+}
+.support {
+    
+    left: 0;
+    position: fixed;
+    top: 100px;
+    z-index: 99999;
+    a {
+	color: $grayLight;
+	background: #000;	
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	color: #B0AEC8;
+	display: block;
+	font-weight: bold;
+	height: 40px;
+	line-height: 42px;
+	margin-left: -27px;
+	padding: 0 12px;
+	
+	&:hover { 
+	    color: #FFF;
+	    text-decoration: none;
+	}
+    }  
+}
+
+
+
+
+
+/* ======= TYPOGRAHY ======= */
 h1                { text-shadow: white 1px 1px 0px; color: #333333; font-style: normal; font-weight: normal; font-size: 38px; margin-bottom: 0.5em; line-height: 1.1em; }
 h2                { text-shadow: white 1px 1px 0px; color: #333333; font-style: normal; font-weight: 200; font-size: 28px; margin-bottom: 10px; line-height: 1.25em; }
 h3                { text-shadow: white 1px 1px 0px; color: #333333; font-style: normal; font-weight: normal; font-size: 24px; margin-bottom: 10px; line-height: 1.1em; }
@@ -175,3 +250,42 @@ p { font-size: 1.2em; line-height: 1.7em; text-align:justify; }
 	background-image: -o-linear-gradient(top, #BFDC7A, #8EBF45);
 	color: #fff;
 }
+
+
+
+
+/* ======= Structure: splash ======= */
+.splash-nav { width: 100%; position:fixed;}
+
+.splash-nav-inner {
+  padding: 0px;
+  margin: 0px 0px 0px;
+  border-bottom: 1px dashed #91c4ea;
+  background: #b6daf3 ; }
+
+.splash-nav ul {
+  list-style: none;
+  margin: 0 10px;
+  padding: 0;
+  border-left: 1px dashed #8bbfe9; }
+
+.splash-nav ul li {
+  float: left;
+  padding: 0;
+  border-top: 1px solid #c7e3f7;;
+  border-right: 1px dashed #8bbfe9; }
+
+.splash-nav ul li a {
+  display: inline-block;
+  padding: 20px 25px 10px;
+  text-decoration: none;
+  border-bottom: none; }
+
+.splash-nav ul li a:hover {
+    background: #fff; /* Old browsers */    
+    border-bottom: none !important;
+    text-decoration: none; }
+
+
+
+
