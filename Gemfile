@@ -14,13 +14,10 @@ gem 'brakeman'
 gem 'devise', '2.1.2'
 gem 'devise_invitable', '1.0.3'
 gem 'devise-encryptable'
-#gem 'orm_adapter', '0.4.0'
-#gem 'warden', '1.2.1'
-
+gem 'prawn'
 
 #gem 'foreigner', '1.2.0'
 #gem 'sidekiq'
-
 #gem 'activemerchant'
 
 # Bundle edge Rails instead:
