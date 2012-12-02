@@ -2,6 +2,8 @@ $navbarHeight: 50px;
 $baseFontSize: 14px;
 $baseLineHeight: 20px;
 
+
+
 @import "bootstrap";
 
 /* ======= Global ======= */
@@ -33,43 +35,6 @@ textarea {
 	margin-bottom: 10px;
   }
 }
-
-/* MOVE THIS STUFF */
-.avatar { float: left; margin-top: 8px; margin-left:5px; }
-
-.for-flash {height:100px}
-
-.support {
-    
-    left: 0;
-    position: fixed;
-    top: 100px;
-    z-index: 99999;
-    a {
-	color: $grayLight;
-	background: #000;	
-	-webkit-transform: rotate(-90deg);
-	-moz-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	-o-transform: rotate(-90deg);
-	transform: rotate(-90deg);
-	color: #B0AEC8;
-	display: block;
-	font-weight: bold;
-	height: 40px;
-	line-height: 42px;
-	margin-left: -27px;
-	padding: 0 12px;
-	
-	&:hover { 
-	    color: #FFF;
-	    text-decoration: none;
-	}
-    }  
-}
-
-
-/* */
 
 .container {
     margin-right: auto;

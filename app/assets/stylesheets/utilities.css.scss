@@ -1,3 +1,8 @@
+/* ======= Colors ======= */
+$grayMediumLight: #eaeaea;
+$grayLight: #eaeaea;
+
+
 /* ======= Utility ======= */
 .inner            { margin: 0 auto; width: 960px; }
 .left             { display: inline; float: left; }
@@ -13,8 +18,9 @@ img.right         { margin: 0px 0px 20px 25px; }
 .dglyph           { margin-right: 10px; }
 .content          { margin-top: 30px; } 
 .content-classroom          { margin-top: 75px; } 
-.avatar           { margin-top: 6px; margin-left:5px; }
+.avatar           { margin-top: 8px; margin-left:5px; }
 .pad-button       { padding: 25px; }
+.for-flash {height:100px}
 /* #user_avatar      { color: #fff; margin-top: 60px; margin-left:5px; } */
 .btn {	       
     margin-bottom: 5px;
@@ -25,3 +31,33 @@ img.right         { margin: 0px 0px 20px 25px; }
 	}
     }  
 }
+.support {
+    
+    left: 0;
+    position: fixed;
+    top: 100px;
+    z-index: 99999;
+    a {
+	color: $grayLight;
+	background: #000;	
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	color: #B0AEC8;
+	display: block;
+	font-weight: bold;
+	height: 40px;
+	line-height: 42px;
+	margin-left: -27px;
+	padding: 0 12px;
+	
+	&:hover { 
+	    color: #FFF;
+	    text-decoration: none;
+	}
+    }  
+}
+
+
