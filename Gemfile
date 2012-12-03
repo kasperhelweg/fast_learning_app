@@ -15,7 +15,7 @@ gem 'devise', '2.1.2'
 gem 'devise_invitable', '1.0.3'
 gem 'devise-encryptable'
 gem 'prawn'
-
+gem 'awesome_nested_fields'
 #gem 'foreigner', '1.2.0'
 #gem 'sidekiq'
 #gem 'activemerchant'

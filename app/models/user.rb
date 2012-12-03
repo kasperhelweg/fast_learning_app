@@ -21,17 +21,17 @@ class User < ActiveRecord::Base
 
   # Accesible
   attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, 
-                                :skip_invitation, :profile_attributes, :organization_attributes, :admin_for_space
+                                :skip_invitation, :profile_attributes, :organization_attributes, :organization_id, :admin_for_space, :_scope
   
-  attr_accessor                 :name_required, :admin_for_space
+  attr_accessor                 :name_required, :admin_for_space, :first_record, :_scope
   
   # Callbacks
   after_initialize { set_name_required( true ) }
-  #before_create    { set_state( 'born' ) unless self.state }
     
-  before_save    :create_id_hash
-  before_save    :fix_name
+  before_save     :create_id_hash
+  before_save     :fix_name
   
+  before_save     :stage, :if => lambda{ self._scope == :learningspace.to_s }
   # Validations
   validates       :name, presence: true, length: { maximum: 50 }, :if => lambda{ self.name_required? }
 
@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
 
   def to_param
     id_hash
+  end
+
+  def first_record?
+    self.first_record
   end
   
   def role?( role )
@@ -95,13 +99,22 @@ class User < ActiveRecord::Base
     self.name_required
   end
 
-  def stage( org )
-    self.organization = org
+  #def stage( org )
+  #  self.organization = org
+  #  self.build_profile
+  #  self.skip_confirmation!       
+    #self.state = 'staged'
+  #  self.role = "User"
+  #end
+
+  def stage
+    #self.organization = org
     self.build_profile
     self.skip_confirmation!       
     #self.state = 'staged'
     self.role = "User"
   end
+
   ##############################################################
   # Private interface
   ##############################################################

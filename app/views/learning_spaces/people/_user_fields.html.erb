@@ -1,9 +1,17 @@
-<fieldset>
+<fieldset class="item">
   <div>
     <%= f.text_field :name, class: 'input-large', placeholder: 'navn' %>
     <%= f.text_field :email, class: 'input-large', placeholder: 'email' %>
   </div>
   admin <%= f.check_box :admin_for_space %>
   <br>
-  <%= link_to "remove", "#", class: "remove_fields" %>
+  <% if !f.object.first_record? %>
+  <%= link_to "remove", "#", class: "remove" %>
+  <br>
+  <% end %>
+  <br>
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :_destroy %>
+  <%= f.hidden_field :_scope, :value => :learningspace %>
+  <%= f.hidden_field :organization_id, :value => @learning_space.organization.id %>
 </fieldset>

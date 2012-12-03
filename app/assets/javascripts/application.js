@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.nested-fields
 //= require bootstrap
 //= require_tree .

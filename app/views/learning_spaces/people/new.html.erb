@@ -1,13 +1,17 @@
 <%= form_for( @learning_space, :url => learning_space_people_path( @learning_space.organization, @learning_space ), 
               :method => :post, 
               :html => { :class => 'form-inline' } ) do |f| %>
-  <%= f.fields_for :users do |u| %>
-    <% if u.object.new_record? %>
-      <%= render 'user_fields', f: u %>
+  <div class="items">
+    <% first_record = true %>
+    <%= f.nested_fields_for :users do |u| %>
+      <% if u.object.new_record? %>
+        <% u.object.first_record = first_record %>
+        <%= render 'user_fields', f: u %>
+	<% first_record = false %>
+      <% end %>
     <% end %>
-  <% end %>
-  <br>
-  <%= link_to_add_fields "add user", f, :users %>
+  </div>
+  <%= link_to "Tilføj", "#", :class => "add" %>
   <br>
   <br>
   <div><%= f.submit "Add people", class: 'btn' %></div>

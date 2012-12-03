@@ -7,18 +7,18 @@ class LearningSpaces::PeopleController < ApplicationController
 
   def create
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id] )
-    params[:learning_space][:users_attributes].each do |users_attributes|
-      user_attr = users_attributes[1]
-      user = @learning_space.users.build( user_attr )  
-      user.stage( @learning_space.organization )
+    if @learning_space.update_attributes( params[:learning_space] )
       #user.invite!
-    end
-    
-    if @learning_space.save
       flash[:success] = "People added"     
       redirect_to current_user
     else
       render 'new'
     end
+    #params[:learning_space][:users_attributes].each do |users_attributes|
+    #  user_attr = users_attributes[1]
+    #  user = @learning_space.users.build( user_attr )  
+    #  user.stage( @learning_space.organization )
+    #  user_count = user_count + 1
+    #end
   end
 end
