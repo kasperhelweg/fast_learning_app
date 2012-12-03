@@ -5,7 +5,7 @@
     <% first_record = true %>
     <%= f.nested_fields_for :users do |u| %>
       <% if u.object.new_record? %>
-        <% u.object.first_record = first_record %>
+        <% u.object._first_record = first_record %>
         <%= render 'user_fields', f: u %>
 	<% first_record = false %>
       <% end %>

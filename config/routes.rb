@@ -31,8 +31,6 @@ FastLearningApp::Application.routes.draw do
   # Roles
   resources :roles
 
-  
-  
   # Courses
   resources :courses  
   resources :classrooms, except: [:show] do

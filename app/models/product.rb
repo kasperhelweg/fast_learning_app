@@ -1,3 +1,7 @@
 class Product < ActiveRecord::Base
-  # attr_accessible :title, :body
+  # Associations
+  belongs_to :buyable, :polymorphic => true
+  has_many :line_items
+  
+  attr_accessible #none
 end

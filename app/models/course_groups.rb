@@ -1,3 +1,7 @@
 class CourseGroups < ActiveRecord::Base
-  # attr_accessible :title, :body
+  
+  # Associations
+  belongs_to :learning_plan
+  belongs_to :course
+  attr_accessible #none
 end

@@ -7,7 +7,7 @@
   <fieldset>
     <legend>Account Activation<% if resource.name %> for <%= resource.name %><% end %></legend>
     
-    <%= f.fields_for :organization, @organization do |o| %>
+    <%= f.fields_for :organization do |o| %>
       <p><%= o.label :name, "Org name:" %> <%= o.text_field :name %></p>
     <% end %>
  
@@ -16,6 +16,7 @@
       <p><%= f.label :password_confirmation,'Password Confirmation:' %> <%= f.password_field :password_confirmation %></p>
   <% end %>
   <%= hidden_field_tag :confirmation_token, @confirmation_token %>
+  <%= f.hidden_field :_scope, :value => :confirmation %>
   <p><%= f.submit "Activate" %></p>
   </fieldset>
 <% end %>

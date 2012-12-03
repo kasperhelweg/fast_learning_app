@@ -1,3 +1,9 @@
 class LineItem < ActiveRecord::Base
-  # attr_accessible :title, :body
+  
+  # Associations
+  belongs_to     :order
+  belongs_to     :product
+  belongs_to     :user       
+  
+  attr_accessible :product_id 
 end

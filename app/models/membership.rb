@@ -23,6 +23,6 @@ class Membership < ActiveRecord::Base
   private
 
   def set_admin
-    self.admin = self.user.admin_for_space
+    self.admin = self.user._admin_for_space
   end
 end

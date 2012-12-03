@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_one                       :profile
   accepts_nested_attributes_for :profile
 
+  has_one    :account, :as => :accountable
+
   has_many                      :memberships
   has_many                      :learning_spaces, :through => :memberships
   
@@ -21,9 +23,9 @@ class User < ActiveRecord::Base
 
   # Accesible
   attr_accessible               :name, :email, :password, :password_confirmation, :remember_me, 
-                                :skip_invitation, :profile_attributes, :organization_attributes, :organization_id, :admin_for_space, :_scope
+                                :skip_invitation, :profile_attributes, :organization_attributes, :_organization_id, :_admin_for_space, :_scope
   
-  attr_accessor                 :name_required, :admin_for_space, :first_record, :_scope
+  attr_accessor                 :name_required, :_admin_for_space, :_organization_id, :_first_record, :_scope
   
   # Callbacks
   after_initialize { set_name_required( true ) }
@@ -51,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def first_record?
-    self.first_record
+    self._first_record
   end
   
   def role?( role )
@@ -108,9 +110,9 @@ class User < ActiveRecord::Base
   #end
 
   def stage
-    #self.organization = org
-    self.build_profile
     self.skip_confirmation!       
+    self.build_profile
+    self.organization = Organization.find( self._organization_id )
     #self.state = 'staged'
     self.role = "User"
   end
@@ -120,7 +122,6 @@ class User < ActiveRecord::Base
   ##############################################################
   private
 
-  
   def set_name_required( b )
     self.name_required = b
   end

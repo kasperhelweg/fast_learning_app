@@ -3,6 +3,8 @@ class Organization < ActiveRecord::Base
   # Associations
   has_many :users
   has_many :learning_spaces
+
+  has_one    :account, :as => :accountable
   
   # Paperclip
   has_attached_file :logo, 
@@ -16,6 +18,7 @@ class Organization < ActiveRecord::Base
   
   # Callbacks
   before_create    :create_id_hash 
+  before_create    { self.build_account }
 
   # Validations
   validates      :name, presence: true, length: { maximum: 50 }
