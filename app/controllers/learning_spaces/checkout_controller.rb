@@ -38,13 +38,14 @@ class LearningSpaces::CheckoutController < ApplicationController
   private
 
   def do_show
+    @order.users = @learning_space.users.where( "state = ?", 'staged' )
     @order.switch(
                   born?: -> { #Something wen't wrong 
                   },
                   initialized?: -> {
                     # Order ready for modification
-                    @staged_users = @learning_space.users.where( "state = ?", 'staged' )
-                    @order.init( @staged_users ) 
+                    
+                    @order.init                    
                     render '_edit'
                   },
                   editable?: -> {
@@ -53,7 +54,6 @@ class LearningSpaces::CheckoutController < ApplicationController
                   },              
                   confirmable?: -> {
                     # Order redy for confirmation 
-                    @staged_users = @learning_space.users.where( "state = ?", 'staged' )
                     render '_confirm'
                   },
                   completeable?: -> {

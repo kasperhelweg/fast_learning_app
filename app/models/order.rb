@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
   # Accesible 
   attr_accessible   :line_items_attributes
 
+  attr_accessor     :users
+
   # Callbacks
   before_create :create_id_hash
 
@@ -46,7 +48,7 @@ class Order < ActiveRecord::Base
   ##############################################################
   
   
-  def init( users )
+  def init
     users.each do |user|
       line_item = self.line_items.build
       line_item.user = user
@@ -57,17 +59,13 @@ class Order < ActiveRecord::Base
 
   def complete_order
     # First create invitations and activate users
-    #users = get_users
-    #users.each do |user|
-    #  user.enroll_in_course( Course.first )
-    #  user.activate
-    #  user.invite!
-      #line_items_for_user = user.get_line_items_for_user( user )
-      #line_items_for_user.each do |line_item|
-      
-      #end
-    #end
-    #self.state = 'complete'
+    users.each do |user|
+      self.transaction do
+        user.enroll_in_course( Course.first )
+        user.activate
+        user.invite!    
+      end
+    end
   end
     
   def switch( hash )
