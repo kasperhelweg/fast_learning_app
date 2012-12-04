@@ -3,7 +3,7 @@
  
   <legend>Indstillinger</legend>
   <%= f.simple_fields_for :profile do |p| %> 
-   <%= image_tag resource.profile.avatar.url( :thumb ), :class => 'controls' %> 
+   <%= image_tag resource.profile.avatar.url( :medium ), :size => "65x65", :class => 'controls' %> 
     <div class="clear"></div>
     <%= p.input :avatar, :label => 'Profil billede' , class: 'btn' %>
   <% end %>
