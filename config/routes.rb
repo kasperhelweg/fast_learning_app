@@ -34,7 +34,7 @@ FastLearningApp::Application.routes.draw do
   resources :classrooms, except: [:show] do
     match ':id(.:format)',  to: 'classrooms#show', as: :page, via: :get
   end
- 
+
   # Assets
   resources :resources
   

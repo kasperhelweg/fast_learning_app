@@ -1,0 +1,15 @@
+<%= simple_form_for( @organization, :html => { :class => 'form-horizontal' }) do |f| %>
+
+<legend>Konto</legend>
+<%= f.input :name, :label => false, :disabled => true  %> 
+<legend>Invoices</legend>
+<%= f.simple_fields_for :account do |a| %>
+  <% a.object.orders.each do |order| %>
+  <div class="controls"><%= order.updated_at %><br></div>
+  <% end %>
+<% end %>
+<div class="form-actions">
+    <%= f.button :submit, "Gem", class: 'btn' %><br><br>
+  </div>
+
+<% end %>

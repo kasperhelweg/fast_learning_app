@@ -1,5 +1,5 @@
 <%= render :partial => 'shared/error_messages' %>  
-<%= form_for( @person, :html => {  :multipart => true, :class => "new_user"}) do |f| %>
+<%= simple_form_for( @person, :html => {  :multipart => true, :class => "new_user"}) do |f| %>
   <%= render :partial => 'layouts/partials/users/basic_user_info', :locals => { :f => f } %>  
   <div><%= f.submit "Gem ændringer", class: 'btn' %></div>
 <% end %>

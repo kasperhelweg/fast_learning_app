@@ -9,16 +9,15 @@
     </div>
   <% end %>
 
-   
-    <%= f.input :email, :placeholder => "email", :id => "inputEmail" %>
-    <%= f.input :password, :placeholder => "password", :id => "inputPassword" %>
-    <%= f.input  :remember_me, :label => false, :inline_label => 'Forbliv logget på', :as => :boolean if devise_mapping.rememberable? %>
+  <%= f.input :email, :placeholder => "email", :id => "inputEmail" %>
+  <%= f.input :password, :placeholder => "password", :id => "inputPassword" %>
+  <%= f.input  :remember_me, :label => false, :inline_label => 'Forbliv logget på', :as => :boolean if devise_mapping.rememberable? %>
       
-    <div class="form-actions">
-      <%= f.button :submit, "Log på", class: 'btn' %><br><br>
-      <%= render "devise/shared/links" %>
-    </div>
-  <% end %>
+  <div class="form-actions">
+    <%= f.button :submit, "Log på", class: 'btn' %><br><br>
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>
 
 
 

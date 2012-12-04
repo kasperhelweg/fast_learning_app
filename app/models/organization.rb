@@ -5,6 +5,7 @@ class Organization < ActiveRecord::Base
   has_many :learning_spaces
 
   has_one    :account, :as => :accountable
+  accepts_nested_attributes_for :account
   
   # Paperclip
   has_attached_file :logo, 
@@ -14,7 +15,7 @@ class Organization < ActiveRecord::Base
                     :s3_permissions => :public_read
   
   # Accesible
-  attr_accessible :name, :logo
+  attr_accessible :name, :logo, :account_attributes
   
   # Callbacks
   before_create    :create_id_hash 

@@ -1,34 +1,33 @@
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
 <%= devise_error_messages! %>
-  
-  <%= f.fields_for :profile do |p| %> 
-    <%= image_tag resource.profile.avatar.url( :medium ) %>
+ 
+  <legend>Indstillinger</legend>
+  <%= f.simple_fields_for :profile do |p| %> 
+   <%= image_tag resource.profile.avatar.url( :thumb ), :class => 'controls' %> 
     <div class="clear"></div>
-    <%= p.file_field :avatar %>
+    <%= p.input :avatar, :label => 'Profil billede' , class: 'btn' %>
   <% end %>
-  <br><br>
-
-  
- 
-  <%= f.input :name %>
-
- 
+   
+  <%= f.input :name %> 
   <%= f.input :email %>
 <hr>
   
   <div><%= f.input :password, :autocomplete => "off" %>
   <span class="help-block">(efterlad dette felt tomt hvis du ikke ønsker at ændre dit password)</span></div>
+  <br>
  
   <%= f.input :password_confirmation %>
 <hr>
-  <%= f.input :current_password %>
+  <%= f.input :current_password, :label => 'Nuværende password' %>
   <span class="help-block">(skriv dit nuværende password for at ændre indstillinger)</span>
 
  <hr>
-      <%= f.button :submit, "Opdater", class: 'btn' %><br><br>
- 
-<% end %>
-<hr>
-<p>Unhappy? <%= link_to "Slet min konto", registration_path(resource_name), :data => { :confirm => "Er du sikker?" }, :method => :delete %>.</p>
 
-<%= link_to "Tilbage", :back %>
+      
+  <div class="form-actions">
+    <%= f.button :submit, "Opdater", class: 'btn' %><br><br>
+    <small>Unhappy? <%= link_to "Slet min konto", registration_path(resource_name), :data => { :confirm => "Er du sikker?" }, :method => :delete %>.</small>
+  </div>
+<% end %>
+
+
