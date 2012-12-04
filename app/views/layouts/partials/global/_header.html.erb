@@ -8,7 +8,7 @@
         <ul class="nav pull-right">	
           <li><%= link_to "Forside",  root_path %></li>
           <li><%= link_to "Kalender", "#" %></li>
-          <li><%= link_to "Kurser",   "#" %></li>
+          <li><%= link_to "Kurser",   courses_path %></li>
 	  <li class="divider-vertical"></li>
 	  <% if user_signed_in? %>
 	  <li class="avatar"><%= image_tag current_user.profile.avatar.url(:thumb) %></li>
