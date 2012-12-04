@@ -47,7 +47,6 @@ class Order < ActiveRecord::Base
   # Public interface
   ##############################################################
   
-  
   def init
     users.each do |user|
       line_item = self.line_items.build

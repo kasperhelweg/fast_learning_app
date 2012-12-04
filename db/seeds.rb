@@ -8,10 +8,10 @@
 require File.expand_path('../seeds/application_pages', __FILE__)
 
 # Organizations
-require File.expand_path('../seeds/orgs', __FILE__)
+#require File.expand_path('../seeds/orgs', __FILE__)
 
 # Users
-require File.expand_path('../seeds/users', __FILE__)
+#require File.expand_path('../seeds/users', __FILE__)
 
 # Courses
 require File.expand_path('../seeds/courses', __FILE__)

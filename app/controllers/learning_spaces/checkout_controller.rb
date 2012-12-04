@@ -59,14 +59,14 @@ class LearningSpaces::CheckoutController < ApplicationController
                   completeable?: -> {
                     # Complete_order
                     if @order.complete!
-                      redirect_to current_user
+                      redirect_to learning_space_path( @organization, @learning_space )
                     else
                       # handle errors
                     end
                   },    
                   completed?: -> {
                     # Something is wrong
-                    redirect_to current_user
+                    redirect_to learning_space_path( @organization, @learning_space )
                   }
                   ) { raise UnknownStateError.new } # Don't know what this error is?
   end
