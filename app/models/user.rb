@@ -126,7 +126,6 @@ class User < ActiveRecord::Base
   # Private interface
   ##############################################################
   private
-
   def set_name_required( b )
     self.name_required = b
   end

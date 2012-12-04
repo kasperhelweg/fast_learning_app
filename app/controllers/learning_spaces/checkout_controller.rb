@@ -16,6 +16,8 @@ class LearningSpaces::CheckoutController < ApplicationController
     else
       redirect_to learning_space_path( @learning_space.organization, @learning_space)
     end
+
+    #render 'new' -- !! RENDER CORRECT VIEW BASED ON ORDER STATE
   end
 
   def update
@@ -24,7 +26,7 @@ class LearningSpaces::CheckoutController < ApplicationController
     @order = current_order
     if @order.complete!
       @staged_users.each do |user|
-        user.enroll_in_course( Course.first )
+        user.enroll_in_course( Course.find(5) )
         user.activate
         user.invite!
       end
