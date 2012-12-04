@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
 
   has_many                      :memberships
   has_many                      :learning_spaces, :through => :memberships
-  
+ 
+  has_many                      :line_items
 
   has_many                      :enrollments
   has_many                      :classrooms,      :through => :enrollments

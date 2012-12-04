@@ -12,13 +12,33 @@ class Order < ActiveRecord::Base
   before_create :create_id_hash
 
   state_machine :state, initial: :born do
-    event :initialize do
+    before_transition :completeable => :completed, :do => :complete_order
+
+    event :do_initialize do
       transition :born => :initialized
     end
-    event :complete do
-      transition :born => :completed
+
+    event :confirm do
+      transition :confirmable => :completeable
     end
- 
+
+    event :complete do
+      transition :completeable => :completed
+    end
+
+    event :edit do
+      transition :confirmable => :editable
+    end
+
+    event :next_state do
+      transition :initialized => :confirmable
+      transition :confirmable => :completeable
+      transition :completeable => :completed     
+    end
+
+    event :previous_state do
+      transition :confirmable => :editable
+    end
   end  
   
   ##############################################################
@@ -26,30 +46,33 @@ class Order < ActiveRecord::Base
   ##############################################################
   
   
-  def init_products( users )
-    #users = get_users
+  def init( users )
     users.each do |user|
-      if !LineItem.find_by_user_id( user.id )
-        item_01 = self.line_items.build
-        item_01.user = user
-        item_01.product = Product.first
-      end
+      line_item = self.line_items.build
+      line_item.user = user
+      # Temporary
+      line_item.product = Product.first
     end
   end
 
   def complete_order
     # First create invitations and activate users
-    users = get_users
-    users.each do |user|
-      user.enroll_in_course( Course.first )
-      user.activate
-      user.invite!
+    #users = get_users
+    #users.each do |user|
+    #  user.enroll_in_course( Course.first )
+    #  user.activate
+    #  user.invite!
       #line_items_for_user = user.get_line_items_for_user( user )
       #line_items_for_user.each do |line_item|
       
       #end
-    end
-    self.state = 'complete'
+    #end
+    #self.state = 'complete'
+  end
+    
+  def switch( hash )
+    hash.each {|method, proc| return proc[] if send method }
+    yield if block_given?
   end
   
   
@@ -62,5 +85,6 @@ class Order < ActiveRecord::Base
     # self.id_hash = Digest::SHA2.hexdigest(  )[0..6]
   end
 
+  
 
 end

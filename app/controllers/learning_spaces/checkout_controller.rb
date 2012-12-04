@@ -1,5 +1,9 @@
 class LearningSpaces::CheckoutController < ApplicationController
   include OrdersHelper
+    
+  ##############################################################
+  # Public interface
+  ##############################################################
 
   def edit
     # Very temporary code !!!
@@ -7,59 +11,63 @@ class LearningSpaces::CheckoutController < ApplicationController
     @organization = Organization.find_by_id_hash( params[:organization_id] )
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id])
     
-    @order = initialize_order
-
-    if @order
-      @staged_users = @learning_space.users.where( "state = ?", 'staged' )
-      @order.init_products( @staged_users )
-    else
-      # Handle some error
-    end
-
-
-
-    #case @order.state
-    # RENDERS "THE SHOP"
-    #when 'initialized'
-    #  render 'initialized'
-    # RENDERS "CONFIRMATION
-    #when 'created'
-    #  render 'created'
-    # REDIRECTS BACK
-    #when 'completed'
-    #  redirect_to 
-    #else
-      # raise some error
-    #end
-    
-    @staged_users = @learning_space.users.where( "state = ?", 'staged' )
-    @formatted_hash = []
-    if @staged_users.length > 0
-      @organization = Organization.find_by_id_hash( params[:organization_id] )
-      initialize_order
-      if @order
-        @order.init_products( @staged_users )
-        
-      end
-      
-    else
-      redirect_to learning_space_path( @learning_space.organization, @learning_space)
-    end
-
-    #render 'new' -- !! RENDER CORRECT VIEW BASED ON ORDER STATE
+    @order = initialize_order    
+    do_show
   end
-
+  
   def update
+    ## Crazy code
+    @organization = Organization.find_by_id_hash( params[:organization_id] )
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id])
-    @staged_users = @learning_space.users.where( "state = ?", 'staged' )
     @order = current_order
-    if @order.complete!
-      @staged_users.each do |user|
-        user.enroll_in_course( Course.find(5) )
-        user.activate
-        user.invite!
-      end
-      redirect_to current_user
+
+    # @staged_users = @learning_space.users.where( "state = ?", 'staged' )
+    # @order.init( @staged_users ) 
+                
+    if @order.update_attributes( params[:order] )
+      @order.next_state
+      do_show
+    else
+      do_show
     end
+  end
+    
+  ##############################################################
+  # Private interface
+  ##############################################################
+  private
+
+  def do_show
+    @order.switch(
+                  born?: -> { #Something wen't wrong 
+                  },
+                  initialized?: -> {
+                    # Order ready for modification
+                    @staged_users = @learning_space.users.where( "state = ?", 'staged' )
+                    @order.init( @staged_users ) 
+                    render '_edit'
+                  },
+                  editable?: -> {
+                    # Order can be modified
+                    render '_edit'
+                  },              
+                  confirmable?: -> {
+                    # Order redy for confirmation 
+                    @staged_users = @learning_space.users.where( "state = ?", 'staged' )
+                    render '_confirm'
+                  },
+                  completeable?: -> {
+                    # Complete_order
+                    if @order.complete!
+                      redirect_to current_user
+                    else
+                      # handle errors
+                    end
+                  },    
+                  completed?: -> {
+                    # Something is wrong
+                    redirect_to current_user
+                  }
+                  ) { raise UnknownStateError.new } # Don't know what this error is?
   end
 end

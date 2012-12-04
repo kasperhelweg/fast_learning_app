@@ -1,10 +1,9 @@
 module OrdersHelper
 
   private
-  
   def create_new_order
     order = @organization.account.orders.create! # Move logic to models
-    if order.initialize
+    if order.do_initialize
       session[:order_id] = order.id
     else
       # Handle error

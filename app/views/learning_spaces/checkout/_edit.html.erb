@@ -1,0 +1,22 @@
+<%= simple_form_for @order, :url => learning_space_checkout_path( @organization, @learning_space ),  :method => :put, :html => { :class => 'form-inline'} do |f| %>
+
+<% @staged_users.each do |user| %>
+  <%= image_tag( user.profile.avatar.url( :thumb ), :class => 'controls' )  %>
+	<strong><%= user.name %></strong>
+	<%= user.email %>
+   
+
+  <%= f.simple_fields_for :line_items do |li| %>
+    <% if li.object.user_id == user.id %>
+	<%= li.collection_select(:product_id, Product.all, :id, :name, {}, :class => "span2") %>    
+	<%= li.hidden_field :user_id, :value => user.id %>
+    <% end %>
+  <% end %>  
+  <div class="clear"></div><br>
+
+<% end %>
+<div class="clear"></div><br>
+
+<div><%= f.button :submit, "Videre", class: 'btn' %></div>
+<% end %>
+
