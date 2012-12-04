@@ -1,0 +1,27 @@
+<h4>Confirm</h4><br>
+<%= @check %>
+<% @formatted_hash.each do |user, line_items| %>
+  <div>
+  <%= image_tag( user.avatar.url( :thumb ), :class => "profile-image")  %>
+  <h5><%= user.name %></h5>
+  <h7><%= user.email %></h7><br>
+  <% if line_items.length == 0 %>
+    No things
+  <% else %>
+    <% line_items.each do |line_item| %>
+    <% if line_item.product %>
+      <%= line_item.product.name %>
+    <% else %>
+    testing
+    <% end %>
+    <% end %>
+  <% end %>
+  </div>
+<% end %>
+ <div class="clear"></div><br>
+
+<%= form_for @order, url: learning_space_checkout_path(@learning_space.organization, @learning_space), :method => :put do |f| %>
+  <div><%= f.submit "Confirm", class: 'btn' %></div>
+ 
+<% end %>
+

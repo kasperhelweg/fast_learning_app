@@ -5,7 +5,10 @@ class LearningSpace < ActiveRecord::Base
   
   has_many :memberships
   has_many :users, :through => :memberships
-  accepts_nested_attributes_for :users, :allow_destroy => true, :reject_if => lambda{ |attributes| ( attributes[:name].blank? && attributes[:email].blank? ) && attributes[:_first_record] != :true.to_s  }
+  accepts_nested_attributes_for :users, :allow_destroy => true, 
+                                        :reject_if => 
+                                        lambda{ |attributes| 
+                                        ( attributes[:name].blank? && attributes[:email].blank? ) && attributes[:_first_record] != :true.to_s  }
     
   # Accesible
   attr_accessible :name, :users_attributes

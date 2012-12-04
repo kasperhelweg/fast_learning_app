@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203142909) do
+ActiveRecord::Schema.define(:version => 20121203212530) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20121203142909) do
 
   add_index "classrooms", ["id_hash"], :name => "index_classrooms_on_id_hash", :unique => true
 
-  create_table "course_groups", :force => true do |t|
+  create_table "course_groupings", :force => true do |t|
     t.integer  "learning_plan_id"
     t.integer  "course_id"
     t.datetime "created_at",       :null => false
@@ -114,7 +114,6 @@ ActiveRecord::Schema.define(:version => 20121203142909) do
   add_index "memberships", ["user_id", "learning_space_id"], :name => "index_memberships_on_user_id_and_learning_space_id", :unique => true
 
   create_table "orders", :force => true do |t|
-    t.string   "id_hash",       :null => false
     t.string   "nr"
     t.integer  "account_id"
     t.string   "state"
@@ -124,8 +123,6 @@ ActiveRecord::Schema.define(:version => 20121203142909) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
-
-  add_index "orders", ["id_hash"], :name => "index_orders_on_id_hash", :unique => true
 
   create_table "organizations", :force => true do |t|
     t.string   "name",              :default => "", :null => false

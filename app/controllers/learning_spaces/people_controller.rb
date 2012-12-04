@@ -10,7 +10,7 @@ class LearningSpaces::PeopleController < ApplicationController
     if @learning_space.update_attributes( params[:learning_space] )
       #user.invite!
       flash[:success] = "People added"     
-      redirect_to current_user
+      redirect_to learning_space_checkout_path( @learning_space.organization, @learning_space)
     else
       render 'new'
     end

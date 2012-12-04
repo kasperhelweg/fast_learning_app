@@ -1,54 +1,23 @@
-
-
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
-          <legend></legend>  
-  <fieldset>
-    
-    <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-    
-    <div class="control-group">
-
-	<h3>Log på</h3>
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
  
+  <legend>Log på</legend>
+  
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %> fade in">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <%= value %>
     </div>
-    
-    <div class="control-group">
+  <% end %>
 
-      <label class="control-label" for="inputEmail">Email</label>
-      <div class="controls">
-        <%= f.email_field :email, :placeholder => "email", :id => "inputEmail" %>
-      </div>
-    </div>
-    
-    <div class="control-group">
-      <label class="control-label" for="inputPassword">Password</label>
-      <div class="controls">
-	<%= f.password_field :password, :placeholder => "password", :id => "inputPassword" %>
-      </div>
-    </div>
    
-    <% if devise_mapping.rememberable? -%>
-     <div class="control-group">
-      <div class="controls">
-	<label class="checkbox">
-           <%= f.check_box :remember_me %> Forbliv logget på?
-	</label>
-	
-    
-     <% end -%>
-     <%= f.submit "Log på", class: 'btn' %>
-      </div>
+    <%= f.input :email, :placeholder => "email", :id => "inputEmail" %>
+    <%= f.input :password, :placeholder => "password", :id => "inputPassword" %>
+    <%= f.input  :remember_me, :label => false, :inline_label => 'Forbliv logget på', :as => :boolean if devise_mapping.rememberable? %>
+      
+    <div class="form-actions">
+      <%= f.button :submit, "Log på", class: 'btn' %><br><br>
+      <%= render "devise/shared/links" %>
     </div>
-
-     <div class="control-group">
-       <div class="controls">
-	 <%= render "devise/shared/links" %>
-       </div>
-     </div>
-    </fieldset>
-
   <% end %>
 
 

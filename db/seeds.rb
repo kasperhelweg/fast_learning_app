@@ -16,6 +16,10 @@ require File.expand_path('../seeds/users', __FILE__)
 # Courses
 require File.expand_path('../seeds/courses', __FILE__)
 
+# Learning Plans & Products
+require File.expand_path('../seeds/learning_plans', __FILE__)
+require File.expand_path('../seeds/products', __FILE__)
+
 # Classrooms
 require File.expand_path('../seeds/classrooms', __FILE__)
 

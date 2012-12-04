@@ -33,14 +33,20 @@ class User < ActiveRecord::Base
   before_save     :create_id_hash
   before_save     :fix_name
   
-  before_save     :stage, :if => lambda{ self._scope == :learningspace.to_s }
+  before_save      :stage, :if => lambda{ self._scope == :learningspace.to_s }
+  
   # Validations
   validates       :name, presence: true, length: { maximum: 50 }, :if => lambda{ self.name_required? }
-
-
+  
+  
   state_machine :state, initial: :born do
+    
     event :activate do
       transition :born => :active
+      transition :staged => :active
+    end
+    event :stage do
+      transition :born => :staged
     end
   end
   
@@ -101,21 +107,20 @@ class User < ActiveRecord::Base
     self.name_required
   end
 
-  #def stage( org )
-  #  self.organization = org
-  #  self.build_profile
-  #  self.skip_confirmation!       
-    #self.state = 'staged'
-  #  self.role = "User"
-  #end
-
   def stage
     self.skip_confirmation!       
     self.build_profile
     self.organization = Organization.find( self._organization_id )
-    #self.state = 'staged'
     self.role = "User"
+    self.state = "staged"
   end
+
+  def enroll_in_course( course )
+    enrollment = self.enrollments.new
+    enrollment.state = 'invited'
+    enrollment.course = course
+  end
+
 
   ##############################################################
   # Private interface

@@ -1,0 +1,2 @@
+module LearningSpaces::CheckoutHelper
+end

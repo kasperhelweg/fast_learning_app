@@ -1,7 +1,5 @@
 FastLearningApp::Application.routes.draw do
  
-  resources :enrollments
-
   root                            to: 'application_pages#show', :id => 1
   
   # Static pages
@@ -36,32 +34,28 @@ FastLearningApp::Application.routes.draw do
   resources :classrooms, except: [:show] do
     match ':id(.:format)',  to: 'classrooms#show', as: :page, via: :get
   end
-
-  # Courses
-  #resources :courses
-
-  # Classrooms
-  #resources :classrooms
-  
+ 
   # Assets
   resources :resources
   
+  resources :enrollments
+  
   # Orders
   resources :orders
-
+  
   # Products
   resources :products
-
+  
   # LearningPlans
   resources :learning_plans
-
+  
   # Organisations
   resources :organizations, :path => '' do
     resources :users, :as => 'people',
     :only => [:new, :create],
     :path => 'people',
     :controller => 'organizations/people'
-   
+    
   end
   
   resources :learning_spaces, :only => [:index, :new, :create], :path => '/:organization_id/learningspaces/'
@@ -70,7 +64,14 @@ FastLearningApp::Application.routes.draw do
     :only => [:new, :create],
     :path => 'people',
     :controller => 'learning_spaces/people'
+    match '/checkout', to: 'learning_spaces/checkout#edit', :via => :get
+    match '/checkout', to: 'learning_spaces/checkout#update', :via => :put
+    
+    #resources :checkout  
   end
+
+  # Errors routing
+  match '*a', :to => 'errors#routing'
 
 
   #  resources :companies, :path => '', :only => [] do 

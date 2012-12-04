@@ -1,15 +1,15 @@
 <fieldset class="item">
-  <div>
-    <%= f.text_field :name, class: 'input-large', placeholder: 'navn' %>
-    <%= f.text_field :email, class: 'input-large', placeholder: 'email' %>
-  </div>
-  admin <%= f.check_box :_admin_for_space %>
-  <br>
+  
+  <%= f.input :name, :label => false,  class: 'input-large', placeholder: 'navn' %>
+  <%= f.input :email, :label => false, class: 'input-large', placeholder: 'email' %>
+  <%= f.input  :_admin_for_space, :label => false, :inline_label => 'Admin', :as => :boolean %>
+
   <% if !f.object.first_record? %>
-  <%= link_to "remove", "#", class: "remove" %>
-  <br>
+    <%= link_to "#"  do %>    
+      <button class="remove btn btn-danger btn-mini"><i class="icon-white icon-minus-sign"></i></button> 
+    <% end %>
   <% end %>
-  <br>
+
   <%= f.hidden_field :id %>
   <%= f.hidden_field :_destroy %>
   <%= f.hidden_field :_scope, :value => :learningspace %>

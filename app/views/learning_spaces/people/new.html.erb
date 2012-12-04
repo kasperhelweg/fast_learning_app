@@ -1,4 +1,5 @@
-<%= form_for( @learning_space, :url => learning_space_people_path( @learning_space.organization, @learning_space ), 
+<div class="span8">
+<%= simple_form_for( @learning_space, :url => learning_space_people_path( @learning_space.organization, @learning_space ), 
               :method => :post, 
               :html => { :class => 'form-inline' } ) do |f| %>
   <div class="items">
@@ -11,8 +12,11 @@
       <% end %>
     <% end %>
   </div>
-  <%= link_to "Tilføj", "#", :class => "add" %>
-  <br>
-  <br>
-  <div><%= f.submit "Add people", class: 'btn' %></div>
+  
+  <hr>
+  <%= link_to "#"  do %>    
+    <button class="add btn btn-success btn-mini"><i class="icon-white icon-plus-sign"></i></button> 
+  <% end %>
+  <%= f.button :submit, "Tilføj", class: 'btn right' %>
 <% end %>
+</div>

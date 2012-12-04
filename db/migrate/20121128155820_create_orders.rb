@@ -2,7 +2,7 @@ class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
 
-      t.string  :id_hash, :null => false 
+      #t.string  :id_hash, :null => false 
       t.string  :nr
       t.integer :account_id
       t.string  :state
@@ -14,7 +14,7 @@ class CreateOrders < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :orders, :id_hash, :unique => true
+    #add_index :orders, :id_hash, :unique => true
   end
 end
 
