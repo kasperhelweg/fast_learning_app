@@ -122,7 +122,13 @@ footer {
 /* ======= Flahs ======= */
 .alert  { text-shadow: white 1px 1px 0px; color: #3f4c6b; 
 	  font-style: normal; font-weight: normal; font-size: 14px; 
-	  margin-bottom: 10px; padding-top: 8px; line-height: 1em; padding: 15px; 
+	  margin-bottom: 10px; 
+	  line-height: 1em; 
+	  padding: 15px; 
+	  a {
+	  position: relative; 
+	  margin: 0px 15px 0px 0px;
+            }
 	}
 
 /* ======= Misc ======= */

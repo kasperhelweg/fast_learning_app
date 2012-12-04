@@ -1,5 +1,5 @@
 <%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' } do |f| %>
-  <%= devise_error_messages! %>
+  <%= devise_error_messages! if false %>
  
   <legend><% if resource.name %> <%= resource.name %><% end %>, Aktiver din konto!</legend>
   <%= f.input :password %>

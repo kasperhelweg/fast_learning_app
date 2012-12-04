@@ -1,5 +1,5 @@
 <%= simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put', :class => 'form-horizontal'}, :id => 'activation-form' do |f| %>
-  <%= devise_error_messages! %>
+  <%= devise_error_messages! if false %>
   <% resource.errors.to_hash %>
   
   <fieldset>
@@ -11,7 +11,7 @@
       <%= o.input :logo, :label => 'Vælg et logo' , class: 'btn' %>
       <%= o.input :name, :label => 'Din organisations navn' %>
     <% end %>
- 
+ <hr>
   <% if @requires_password %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %></p>

@@ -8,8 +8,9 @@
   <%= render 'layouts/partials/global/shim' %>
 </head>
 <body>
+  <% if user_signed_in? %>	
   <div class="support"> <%= link_to "Support", "#" %> </div>
-
+  <% end %>
   <div class="container">
     <%= render 'layouts/partials/global/header' %>
   
@@ -21,12 +22,13 @@
 	<div class="row-fluid">
 	  <% if user_signed_in? %>	
             <div class="span2">
-	      <div><%= image_tag current_user.organization.logo.url(:thumb) %></div>
+	      <div><%= image_tag current_user.organization.logo.url(:medium) %></div>
 	      <div><%= link_to current_user.organization.name , current_user.organization %></div>
+	      <br><br>
 	        <%= link_to learning_space_path( current_user.organization, current_user.organization.learning_spaces.first ), :class => 'no-decoration' do %>    
 	        <button class="btn btn-info btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Default space</button> 
 	        <% end %><br>
-		 <%= link_to  "Create learningspace", new_learning_space_path( current_user.organization ) %>    
+		 <small><%= link_to  "+ Create learningspace", new_learning_space_path( current_user.organization ) %> </small>   
     
     
 
