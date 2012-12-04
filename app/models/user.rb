@@ -116,10 +116,12 @@ class User < ActiveRecord::Base
     self.state = "staged"
   end
 
-  def enroll_in_course( course )
-    enrollment = self.enrollments.new
-    enrollment.state = 'invited'
-    enrollment.course = course
+  def enroll_in_course( courses )
+    courses.each do |course|    
+      enrollment = self.enrollments.new
+      enrollment.state = 'invited'
+      enrollment.course = course
+    end
   end
 
 

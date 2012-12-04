@@ -60,7 +60,8 @@ class Order < ActiveRecord::Base
     # First create invitations and activate users
     users.each do |user|
       self.transaction do
-        user.enroll_in_course( Course.find(5) )
+        courses = [Course.find(2), Course.find(5), Course.find(7)]
+        user.enroll_in_course( courses)
         user.activate
         user.invite!    
       end
