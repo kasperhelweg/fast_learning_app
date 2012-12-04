@@ -8,7 +8,7 @@ class LearningSpaces::PeopleController < ApplicationController
   def create
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id] )
     if @learning_space.update_attributes( params[:learning_space] )
-      #user.invite!
+      # INVITE USERS!
       flash[:success] = "People added"     
       redirect_to learning_space_checkout_path( @learning_space.organization, @learning_space)
     else

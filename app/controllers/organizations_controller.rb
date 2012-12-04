@@ -11,5 +11,8 @@ class OrganizationsController < ApplicationController
   end
 
   def update
+    organization = current_user.organization
+    learning_space = organization.learning_spaces.first
+    redirect_to learning_space_path( organization, learning_space ) 
   end
 end

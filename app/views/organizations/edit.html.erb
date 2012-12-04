@@ -1,11 +1,16 @@
 <%= simple_form_for( @organization, :html => { :class => 'form-horizontal' }) do |f| %>
 
 <legend>Konto</legend>
-<%= f.input :name, :label => false, :disabled => true  %> 
+<%= image_tag @organization.logo.url( :medium ), :class => 'controls' %> 
+<div class="clear"></div><br>
+<%= f.input :logo, :label => 'Logo' , class: 'btn' %>
+<%= f.input :name, :label => 'Organisation', :disabled => true  %> 
+<legend>Oplysninger</legend>
+
 <legend>Invoices</legend>
 <%= f.simple_fields_for :account do |a| %>
-  <% a.object.orders.each do |order| %>
-  <div class="controls"><%= order.updated_at %><br></div>
+  <% a.object.orders.each do |order| %>  
+  <div class="controls"><%= link_to order.updated_at.strftime('%d. %B %Y'), order_path( order ) %><br></div>
   <% end %>
 <% end %>
 <div class="form-actions">

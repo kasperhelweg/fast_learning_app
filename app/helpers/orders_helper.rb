@@ -1,9 +1,15 @@
 module OrdersHelper
 
   private
+  
   def create_new_order
     order = @organization.account.orders.create! # Move logic to models
-    session[:order_id] = order.id
+    if order.initialize
+      session[:order_id] = order.id
+    else
+      # Handle error
+    end
+    order
   end
   
   def initialize_order
@@ -11,15 +17,14 @@ module OrdersHelper
     if !order || ( order.completed? )
       create_new_order
     else
-      @order = order
+      order
     end
   end
   
   def current_order
-    order = Order.find_by_id(session[:order_id])    
-    
+    order = Order.find_by_id(session[:order_id])        
     if !order || order.completed?
-      # Handle some error?
+      false
     end
     order
   end
