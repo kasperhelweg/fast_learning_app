@@ -1,37 +1,45 @@
 class LearningSpaces::CheckoutController < ApplicationController
   include OrdersHelper
-    
+  
   ##############################################################
   # Public interface
   ##############################################################
-
+  
   def edit
     # First initialize current or new order.
     @organization = Organization.find_by_id_hash( params[:organization_id] )
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id])
     
-    @order = initialize_order    
-    do_show
+    
+    begin
+      @order = initialize_order    
+    rescue
+      # Handle exception
+    ensure 
+      do_show
+    end
   end
   
   def update
     @organization = Organization.find_by_id_hash( params[:organization_id] )
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id])
     @order = current_order
-          
-    if @order.update_attributes( params[:order] )
+    
+    begin
+      @order.update_attributes( params[:order] )
       @order.next_state
-      do_show
-    else
+    rescue
+      # Handle exception
+    ensure 
       do_show
     end
   end
-    
+  
   ##############################################################
   # Private interface
   ##############################################################
   private
-
+  
   def do_show
     @order.users = @learning_space.users.where( "state = ?", 'staged' )
     @order.switch(
