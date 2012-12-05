@@ -1,0 +1,5 @@
+Velkommen <%= @resource.email %>!
+
+Du bedes bekræfte din konto ved at trykke på linket herunder:
+
+<%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
