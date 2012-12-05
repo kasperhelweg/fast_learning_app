@@ -1,6 +1,7 @@
 FastLearningApp::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default :charset => "utf-8"
 
   Paperclip.options[:command_path] = "/usr/bin/"
   config.paperclip_defaults = {

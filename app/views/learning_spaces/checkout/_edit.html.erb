@@ -1,5 +1,5 @@
 <%= simple_form_for @order, :url => learning_space_checkout_path( @organization, @learning_space ),  :method => :put, :html => { :class => 'form-inline'} do |f| %>
-
+<legend>Tilføj pakker</legend>
   <% @order.users.each do |user| %>
     <div class="row co">
       

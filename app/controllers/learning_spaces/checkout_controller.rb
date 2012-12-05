@@ -6,7 +6,6 @@ class LearningSpaces::CheckoutController < ApplicationController
   ##############################################################
 
   def edit
-    # Very temporary code !!!
     # First initialize current or new order.
     @organization = Organization.find_by_id_hash( params[:organization_id] )
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id])
@@ -16,14 +15,10 @@ class LearningSpaces::CheckoutController < ApplicationController
   end
   
   def update
-    ## Crazy code
     @organization = Organization.find_by_id_hash( params[:organization_id] )
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id])
     @order = current_order
-
-    # @staged_users = @learning_space.users.where( "state = ?", 'staged' )
-    # @order.init( @staged_users ) 
-                
+          
     if @order.update_attributes( params[:order] )
       @order.next_state
       do_show
