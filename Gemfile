@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'thin'
 gem 'bootstrap-sass', '2.2.1.1'
 gem 'bcrypt-ruby'
 gem 'cancan'
