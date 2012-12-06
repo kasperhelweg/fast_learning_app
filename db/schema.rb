@@ -232,5 +232,6 @@ ActiveRecord::Schema.define(:version => 20121203212530) do
   add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["organization_id"], :name => "index_users_on_organization_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["state"], :name => "index_users_on_state"
 
 end
