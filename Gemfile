@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'thin'
 gem 'bootstrap-sass', '2.2.1.1'
 gem 'bcrypt-ruby'
 gem 'cancan'
@@ -25,7 +26,6 @@ gem 'simple_form'
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.10.0'
-  gem 'thin'
 end
 
 gem 'annotate', '~> 2.4.1.beta', group: :development
