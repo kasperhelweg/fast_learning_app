@@ -5,5 +5,19 @@ class LineItem < ActiveRecord::Base
   belongs_to     :product
   belongs_to     :user       
   
+  # Accesible
   attr_accessible :product_id, :user_id 
+
+  # Callbacks
+
+  # Validations
+
+  ##############################################################
+  # Public interface
+  ##############################################################
+
+  ##############################################################
+  # Private interface
+  ##############################################################
+  private
 end

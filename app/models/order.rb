@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-    # Associations
+  # Associations
   has_many   :line_items, :dependent => :destroy
   accepts_nested_attributes_for :line_items, allow_destroy: true
   
@@ -42,6 +42,8 @@ class Order < ActiveRecord::Base
       transition :confirmable => :editable
     end
   end  
+
+  # Validations
   
   ##############################################################
   # Public interface
