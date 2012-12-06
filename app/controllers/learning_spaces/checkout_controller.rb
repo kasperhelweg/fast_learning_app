@@ -29,7 +29,7 @@ class LearningSpaces::CheckoutController < ApplicationController
       @order.update_attributes( params[:order] )
       @order.next_state
     rescue
-      # Handle exception
+      # Handle exception 
     ensure 
       do_show
     end
