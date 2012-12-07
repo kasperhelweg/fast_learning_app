@@ -1,7 +1,7 @@
 FastLearningApp::Application.configure do
     # Settings specified here will take precedence over those in config/application.rb
   
-  config.action_mailer.default_url_options = { :host => 'murmuring-ridge-1011.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'fast-learning-app.herokuapp.com' }
   config.action_mailer.default :charset => "utf-8"
 
   ActionMailer::Base.smtp_settings = {

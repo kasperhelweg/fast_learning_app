@@ -1,5 +1,13 @@
-<p>Welcome <%= @resource.email %>!</p>
+<% if Rails.env.development? %>
+  <p>Welcome <%= @resource.email %>!</p>
+  <p>You can confirm your account email through the link below:</p>
 
-<p>You can confirm your account email through the link below:</p>
+  <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<% else %>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+  <p>Velkommen <%= @resource.email %>!</p>
+  <p>Bekræft din konto ved at klikke på linket herunder:</p>
+
+  <p><%= link_to 'Start!', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<% end %>
