@@ -1,5 +1,5 @@
 class LearningPlan < ActiveRecord::Base
-    # Associaltions
+  # Associaltions
   has_many :course_groupings
   has_many :courses, :through => :course_groupings
   
@@ -11,6 +11,12 @@ class LearningPlan < ActiveRecord::Base
   # Callbacks
   before_save :create_id_hash
 
+  # Validations
+  
+  ##############################################################
+  # Public interface
+  ##############################################################
+ 
   ##############################################################
   # Private interface
   ##############################################################

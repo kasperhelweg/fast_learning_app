@@ -1,13 +1,6 @@
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
  
   <legend>Log på</legend>
-  
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %> fade in">
-      <a class="close" data-dismiss="alert" href="#">&times;</a>
-      <%= value %>
-    </div>
-  <% end %>
 
   <%= f.input :email, :placeholder => "email", :id => "inputEmail" %>
   <%= f.input :password, :placeholder => "password", :id => "inputPassword" %>

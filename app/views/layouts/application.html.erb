@@ -29,16 +29,13 @@
 	        <button class="btn btn-info btn-mini"><i class="icon-white icon-plus-sign icon-padding"></i>Default space</button> 
 	        <% end %><br>
 		 <small><%= link_to  "+ Create learningspace", new_learning_space_path( current_user.organization ) %> </small>   
-    
-    
-
 	      <%= yield(:sidebar) %></div>
             <div class="span10"> 
 	      <%= yield %>    
 	    </div>
 	  <% else %>
 	  <div class="span12"> 
-
+	    <%= render 'shared/render_flash' %>
 
 	    <%= yield %>    
 	  </div>

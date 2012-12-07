@@ -1,7 +1,7 @@
 class LearningSpaces::PeopleController < ApplicationController
 
   def new
-    # Get current learningspace and build a default user.
+    # Get current learningspace and build clean users.
     @learning_space = LearningSpace.find_by_id_hash( params[:learning_space_id] ) 
     @learning_space.build_users( 1 )     
   end
