@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FastLearning</title>
+  <title><%= if user_signed_in? 
+	       full_title( current_user.name )
+	     else 
+	       full_title( yield( :title ) )
+	     end%>
+  </title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
